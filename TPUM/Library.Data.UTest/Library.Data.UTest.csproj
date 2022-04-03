@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{818CD46C-082C-46E5-AB0E-E2EFFBBD460E}</ProjectGuid>
+    <ProjectGuid>{967ED146-D17A-49C7-B8C3-A1AE060AB599}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UTests</RootNamespace>
-    <AssemblyName>UTests</AssemblyName>
+    <RootNamespace>Library.Data.UTest</RootNamespace>
+    <AssemblyName>Library.Data.UTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,16 +49,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\CalculatorTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Calculator\Calculator.csproj">
-      <Project>{8295e3bf-2718-46ff-9001-267db126a46e}</Project>
-      <Name>Calculator</Name>
+    <ProjectReference Include="..\Library.Data\Library.Data.csproj">
+      <Project>{a719ad13-4d0e-4f30-b43b-12b9ec15db52}</Project>
+      <Name>Library.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
