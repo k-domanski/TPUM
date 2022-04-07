@@ -41,8 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTest.cs" />
+    <Compile Include="Book.cs" />
+    <Compile Include="BooksRepository.cs" />
+    <Compile Include="Interface\IBook.cs" />
+    <Compile Include="Interface\IBookFactory.cs" />
+    <Compile Include="Interface\IBookRepository.cs" />
+    <Compile Include="Interface\ILending.cs" />
+    <Compile Include="Interface\IPerson.cs" />
+    <Compile Include="Interface\IPersonFactory.cs" />
+    <Compile Include="Interface\IPersonsRepository.cs" />
+    <Compile Include="Lending.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="PersonsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

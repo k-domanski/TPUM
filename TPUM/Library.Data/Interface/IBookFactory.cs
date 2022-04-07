@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Data
+namespace Library.Data.Interface
 {
-    public class DataTest
+    public interface IBookFactory
     {
-        public int test;
+        IBook CreateBook(Guid isbn, string author, string title);
     }
 }
