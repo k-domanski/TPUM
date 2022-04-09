@@ -47,6 +47,7 @@
     <Compile Include="Interface\IBookFactory.cs" />
     <Compile Include="Interface\IBooksRepository.cs" />
     <Compile Include="Interface\ILending.cs" />
+    <Compile Include="Interface\ILendingFactory.cs" />
     <Compile Include="Interface\ILendingsRepository.cs" />
     <Compile Include="Interface\ILibraryDataLayer.cs" />
     <Compile Include="Interface\IPerson.cs" />

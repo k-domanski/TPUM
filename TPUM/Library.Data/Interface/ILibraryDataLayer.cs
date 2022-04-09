@@ -2,7 +2,7 @@
 {
     public interface ILibraryDataLayer
     {
-        IBooksRepository GetBookRepository();
+        IBooksRepository GetBooksRepository();
         IPersonsRepository GetPersonsRepository();
         ILendingsRepository GetLendingsRepository();
     }

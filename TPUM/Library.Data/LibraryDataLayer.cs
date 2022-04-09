@@ -21,7 +21,7 @@ namespace Library.Data
             _lendingsRepository = lendingsRepository;
         }
 
-        public IBooksRepository GetBookRepository()
+        public IBooksRepository GetBooksRepository()
         {
             return _booksRepository;
         }
