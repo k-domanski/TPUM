@@ -18,7 +18,7 @@ namespace Library.Logic.Factories
 
         public IBook Create()
         {
-            return new Book(Guid.NewGuid(), bookData.author, bookData.title);
+            return new Book(Guid.NewGuid(), bookData.isbn, bookData.author, bookData.title);
         }
     }
 }

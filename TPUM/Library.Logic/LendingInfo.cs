@@ -5,6 +5,6 @@ namespace Library.Logic
     public struct LendingInfo
     {
         public Guid personID { get; set; }
-        public Guid bookISBN { get; set; }
+        public Guid bookID { get; set; }
     }
 }

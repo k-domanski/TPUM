@@ -6,14 +6,14 @@ namespace Library.Data
     public class Lending : ILending
     {
         private Guid _personID;
-        private Guid _bookISBN;
+        private Guid _bookID;
         //TODO: Add lending date
         //TODO: Add valid through date
 
-        public Lending(Guid personID, Guid bookISBN)
+        public Lending(Guid personID, Guid bookID)
         {
             _personID = personID;
-            _bookISBN = bookISBN;
+            _bookID = bookID;
         }
 
         public bool Equals(ILending other)
@@ -23,7 +23,7 @@ namespace Library.Data
                 return false;
             }
 
-            return GetPersonID() == other.GetPersonID() && GetBookISBN() == other.GetBookISBN();
+            return GetPersonID() == other.GetPersonID() && GetBookID() == other.GetBookID();
         }
 
         public Guid GetPersonID()
@@ -31,9 +31,9 @@ namespace Library.Data
             return _personID;
         }
 
-        public Guid GetBookISBN()
+        public Guid GetBookID()
         {
-            return _bookISBN;
+            return _bookID;
         }
     }
 }

@@ -9,18 +9,26 @@ namespace Library.Data
 {
     public class Book : IBook
     {
-        private Guid _isbn;
+        private Guid _id;
+        private string _isbn;
         private string _author;
         private string _title;
+        public bool isAvailable { get; set; } = true;
 
-        public Book(Guid isbn, string author, string title)
+        public Book(Guid id, string isbn, string author, string title)
         {
+            _id = id;
             _isbn = isbn;
             _author = author;
             _title = title;
         }
 
-        public Guid GetISBN()
+        public Guid GetBookID()
+        {
+            return _id;
+        }
+
+        public string GetISBN()
         {
             return _isbn;
         }
@@ -35,6 +43,11 @@ namespace Library.Data
             return _title;
         }
 
+        public bool IsAvailable()
+        {
+            return isAvailable;
+        }
+
         public bool Equals(IBook other)
         {
             if (other == null)
@@ -42,7 +55,7 @@ namespace Library.Data
                 return false;
             }
 
-            return GetISBN() == other.GetISBN();
+            return GetBookID() == other.GetBookID();
         }
     }
 }

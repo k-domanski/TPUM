@@ -9,7 +9,7 @@ namespace Library.Data.UTest
     {
         public IBook Create()
         {
-            return new Book(Guid.NewGuid(), "Ala", "Ma Kota");
+            return new Book(Guid.NewGuid(), "123 456 789 0123", "Ala", "Ma Kota");
         }
     }
 
@@ -17,7 +17,7 @@ namespace Library.Data.UTest
     {
         public IBook Create()
         {
-            return new Book(Guid.Empty, "Ala", "Ma Kota");
+            return new Book(Guid.Empty, "123 456 789 0123", "Ala", "Ma Kota");
         }
     }
 

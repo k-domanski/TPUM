@@ -8,8 +8,10 @@ namespace Library.Data.Interface
 {
     public interface IBook : IEquatable<IBook>
     {
-        Guid GetISBN();
+        Guid GetBookID();
+        string GetISBN();
         string GetAuthor();
         string GetTitle();
+        bool IsAvailable();
     }
 }

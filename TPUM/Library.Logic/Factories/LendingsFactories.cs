@@ -19,7 +19,7 @@ namespace Library.Logic.Factories
 
         public ILending Create()
         {
-            return new Lending(lending.personID, lending.bookISBN);
+            return new Lending(lending.personID, lending.bookID);
         }
     }
 }
