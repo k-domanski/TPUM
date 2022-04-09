@@ -34,5 +34,15 @@ namespace Library.Data
         {
             return _title;
         }
+
+        public bool Equals(IBook other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            return GetISBN() == other.GetISBN();
+        }
     }
 }

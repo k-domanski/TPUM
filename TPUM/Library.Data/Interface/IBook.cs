@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Data.Interface
 {
-    public interface IBook
+    public interface IBook : IEquatable<IBook>
     {
         Guid GetISBN();
         string GetAuthor();

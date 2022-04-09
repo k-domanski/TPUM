@@ -6,32 +6,31 @@ namespace Library.Data
 {
     public class PersonsRepository : IPersonsRepository
     {
-        private IPersonFactory _personFactory;
-        private List<IPerson> persons;
+        private List<IPerson> _persons;
 
-        public PersonsRepository(IPersonFactory personFactory)
+        public PersonsRepository()
         {
-            _personFactory = personFactory;
-            if (_personFactory == null)
-            {
-                throw new ArgumentNullException(nameof(personFactory), "Person Factory can't be null");
-            }
-
-            persons = new List<IPerson>();
+            _persons = new List<IPerson>();
         }
-        public bool AddPerson(Guid id, string firstName, string surname)
+
+        public bool AddPerson(IPerson person)
         {
+            if (_persons.Contains(person))
+            {
+                return false;
+            }
+            _persons.Add(person);
             return true;
         }
 
-        public bool RemovePerson(Guid id)
+        public bool RemovePerson(IPerson person)
         {
-            return persons.RemoveAll(person => person.GetID() == id) > 0;
+            return _persons.Remove(person);
         }
 
         public List<IPerson> FindPersonByPredicate(Predicate<IPerson> predicate)
         {
-            return persons.FindAll(predicate);
+            return _persons.FindAll(predicate);
         }
     }
 }

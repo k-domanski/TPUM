@@ -34,5 +34,10 @@ namespace Library.Data
         {
             return _surname;
         }
+
+        public bool Equals(IPerson other)
+        {
+            return GetID() == other.GetID();
+        }
     }
 }

@@ -7,17 +7,17 @@ namespace Library.Data.UTest
 {
     internal class ValidBookFactory : IBookFactory
     {
-        public IBook CreateBook(Guid isbn, string author, string title)
+        public IBook Create()
         {
-            return new Book(isbn, author, title);
+            return new Book(Guid.NewGuid(), "Ala", "Ma Kota");
         }
     }
 
     internal class InvalidBookFactory : IBookFactory
     {
-        public IBook CreateBook(Guid isbn, string author, string title)
+        public IBook Create()
         {
-            return new Book(Guid.Empty, "ala", "ma kota");
+            return new Book(Guid.Empty, "Ala", "Ma Kota");
         }
     }
 
@@ -35,39 +35,26 @@ namespace Library.Data.UTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructRepository_NullBookFactory_ThrowArgumentNullException()
-        {
-            IBookRepository repository = new BooksRepository(null);
-        }
-
-        [TestMethod]
-        public void ConstructRepository_ValidBookFactory_NoThrow()
-        {
-            IBookRepository repository = new BooksRepository(_validFactory);
-        }
-
-        [TestMethod]
         public void AddBook_ValidBookFactory_ReturnsTrue()
         {
-            IBookRepository repository = new BooksRepository(_validFactory);
+            IBooksRepository repository = new BooksRepository();
 
-            bool addResult1 = repository.AddBook(Guid.NewGuid(), "Tom Smith", "Yes or No");
+            bool addResult1 = repository.AddBook(_validFactory.Create());
             Assert.AreEqual(true, addResult1);
 
-            bool addResult2 = repository.AddBook(Guid.NewGuid(), "Tom Smith", "Yes or No");
+            bool addResult2 = repository.AddBook(_validFactory.Create());
             Assert.AreEqual(true, addResult2);
         }
 
         [TestMethod]
         public void AddBook_InvalidBookFactory_ReturnsFalse()
         {
-            IBookRepository repository = new BooksRepository(_invalidFactory);
+            IBooksRepository repository = new BooksRepository();
 
-            bool addResult1 = repository.AddBook(Guid.NewGuid(), "Tom Smith", "Yes or No");
+            bool addResult1 = repository.AddBook(_invalidFactory.Create());
             Assert.AreEqual(true, addResult1);
 
-            bool addResult2 = repository.AddBook(Guid.NewGuid(), "Tom Smith", "Yes or No");
+            bool addResult2 = repository.AddBook(_invalidFactory.Create());
             Assert.AreEqual(false, addResult2);
         }
 
