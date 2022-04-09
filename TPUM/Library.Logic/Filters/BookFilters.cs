@@ -65,7 +65,7 @@ namespace Library.Logic.Filters
     {
         public bool available { get; }
 
-        BookAvailabilityFilter(bool available)
+        public BookAvailabilityFilter(bool available)
         {
             this.available = available;
         }

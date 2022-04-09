@@ -23,7 +23,7 @@ namespace Library.Data
                 return false;
             }
 
-            return GetPersonID() == other.GetPersonID() && GetBookISBN() == other.GetBookISBN();
+            return GetPersonID() == other.GetPersonID() && GetBookID() == other.GetBookID();
         }
 
         public Guid GetPersonID()
@@ -31,7 +31,7 @@ namespace Library.Data
             return _personID;
         }
 
-        public Guid GetBookISBN()
+        public Guid GetBookID()
         {
             return _bookID;
         }
