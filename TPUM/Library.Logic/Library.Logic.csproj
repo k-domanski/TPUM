@@ -46,6 +46,8 @@
     <Compile Include="Factories\BookFactories.cs" />
     <Compile Include="Factories\LendingsFactories.cs" />
     <Compile Include="Factories\PersonFactories.cs" />
+    <Compile Include="Filters\BookFilters.cs" />
+    <Compile Include="Filters\CommonFilters.cs" />
     <Compile Include="Interface\IBooksManager.cs" />
     <Compile Include="Interface\IFilter.cs" />
     <Compile Include="Interface\ILendingsManager.cs" />
