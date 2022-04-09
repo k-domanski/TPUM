@@ -15,7 +15,7 @@ namespace Library.Logic
             _library = library;
         }
 
-        public bool CreateBook(BookInitData initData)
+        public bool CreateBook(BookInfo initData)
         {
             CreateBookFactory factory = new CreateBookFactory(initData);
             return _library.dataLayer.GetBooksRepository().AddBook(factory.Create());

@@ -5,7 +5,7 @@ namespace Library.Logic.Interface
 {
     public interface ILendingsManager
     {
-        bool CreateLending(LendingInitData initData);
+        bool CreateLending(LendingInfo initData);
         List<ILending> GetLendings(IFilter<ILending> filter);
         bool UpdateLending(ILending lending, ILendingFactory lendingFactory);
         bool RemoveLending(ILending lending);

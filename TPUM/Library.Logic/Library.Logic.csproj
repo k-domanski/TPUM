@@ -41,16 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookInitData.cs" />
+    <Compile Include="BookInfo.cs" />
     <Compile Include="BooksManager.cs" />
     <Compile Include="Factories\BookFactories.cs" />
+    <Compile Include="Factories\LendingsFactories.cs" />
+    <Compile Include="Factories\PersonFactories.cs" />
     <Compile Include="Interface\IBooksManager.cs" />
     <Compile Include="Interface\IFilter.cs" />
     <Compile Include="Interface\ILendingsManager.cs" />
     <Compile Include="Interface\IPersonsManager.cs" />
-    <Compile Include="LendingInitData.cs" />
+    <Compile Include="LendingInfo.cs" />
+    <Compile Include="LendingsManager.cs" />
     <Compile Include="Library.cs" />
-    <Compile Include="PersonInitData.cs" />
+    <Compile Include="PersonInfo.cs" />
+    <Compile Include="PersonsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

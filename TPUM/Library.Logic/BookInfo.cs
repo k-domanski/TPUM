@@ -1,6 +1,6 @@
 ﻿namespace Library.Logic
 {
-    public struct BookInitData
+    public struct BookInfo
     {
         public string author { get; set; }
         public string title { get; set; }

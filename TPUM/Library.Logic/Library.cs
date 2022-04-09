@@ -11,12 +11,14 @@ namespace Library.Logic
         public IPersonsManager personsManager { get; private set; }
         public ILendingsManager lendingsManager { get; private set; }
 
-        
+
 
         public Library(ILibraryDataLayer dataLayer)
         {
             this.dataLayer = dataLayer;
             booksManager = new BooksManager(this);
+            personsManager = new PersonsManager(this);
+            lendingsManager = new LendingsManager(this);
         }
     }
 }

@@ -8,10 +8,10 @@ using Library.Data.Interface;
 
 namespace Library.Logic.Factories
 {
-    internal class CreateBookFactory : IBookFactory
+    public class CreateBookFactory : IBookFactory
     {
-        private BookInitData bookData;
-        internal CreateBookFactory(BookInitData initData)
+        private BookInfo bookData;
+        public CreateBookFactory(BookInfo initData)
         {
             bookData = initData;
         }
