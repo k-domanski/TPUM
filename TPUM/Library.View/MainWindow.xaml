@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Library.View"
+        xmlns:local="clr-namespace:Library.View" 
+        xmlns:vm="clr-namespace:Library.ViewModel;assembly=Library.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="Auto">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -55,49 +59,37 @@
             </ListBox>
             <Button Grid.Row="2" Margin="5,5,0,5">ZWRÓĆ KSIĄŻKĘ</Button>
         </Grid>
-        
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListBox Margin="5,5,5,0" Background="MediumAquamarine">
-                <!--<ListBox.ItemTemplate>
-                    <DataTemplate>-->
-                        <StackPanel Margin="16" Orientation="Vertical">
+            <ListBox ItemsSource="{Binding books}" Margin="5,5,5,0" Background="MediumAquamarine">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10,10,10,0" Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <RadioButton GroupName="Books" VerticalContentAlignment="Center"></RadioButton>
-                                <Label>Tytuł</Label>
-                                <Label>Autor</Label>
-                                <Label>skdfjsdkfjsdkfjksdfskdfjksdfjksdf</Label>
-                                <Label>Egzemplarzy:</Label>
-                                <Label>5</Label>
+                                <RadioButton GroupName="Books" VerticalContentAlignment="Center">
+                                    <WrapPanel>
+                                        <Label Content="{Binding title}"/>
+                                        <Label Content="{Binding author}"/>
+                                        <Label Content="{Binding isbn}"/>
+                                        <Label Content="{Binding count}"/>
+                                    </WrapPanel>
+                                </RadioButton>
                             </StackPanel>
                         </StackPanel>
-                <!--</DataTemplate>
-                </ListBox.ItemTemplate>-->
-                <StackPanel Margin="16" Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <RadioButton GroupName="Books" VerticalContentAlignment="Center"></RadioButton>
-                        <Label>Tytuł</Label>
-                        <Label>Autor</Label>
-                        <Label>skdfjsdkfjsdkfjksdfskdfjksdfjksdf</Label>
-                        <Label>Egzemplarzy:</Label>
-                        <Label>5</Label>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="16" Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <RadioButton GroupName="Books" VerticalContentAlignment="Center"></RadioButton>
-                        <Label>Tytuł</Label>
-                        <Label>Autor</Label>
-                        <Label>skdfjsdkfjsdkfjksdfskdfjksdfjksdf</Label>
-                        <Label>Egzemplarzy:</Label>
-                        <Label>5</Label>
-                    </StackPanel>
-                </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            <Button Grid.Row="1" Margin="5">WYPOŻYCZ KSIĄŻKĘ</Button>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="5">WYPOŻYCZ KSIĄŻKĘ</Button>
+                <Button Grid.Column="1" Margin="5">DODAJ KSIĄŻKĘ</Button>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
