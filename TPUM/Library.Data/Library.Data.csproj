@@ -45,12 +45,16 @@
     <Compile Include="BooksRepository.cs" />
     <Compile Include="Interface\IBook.cs" />
     <Compile Include="Interface\IBookFactory.cs" />
-    <Compile Include="Interface\IBookRepository.cs" />
+    <Compile Include="Interface\IBooksRepository.cs" />
     <Compile Include="Interface\ILending.cs" />
+    <Compile Include="Interface\ILendingsRepository.cs" />
+    <Compile Include="Interface\ILibraryDataLayer.cs" />
     <Compile Include="Interface\IPerson.cs" />
     <Compile Include="Interface\IPersonFactory.cs" />
     <Compile Include="Interface\IPersonsRepository.cs" />
     <Compile Include="Lending.cs" />
+    <Compile Include="LendingsRepository.cs" />
+    <Compile Include="LibraryDataLayer.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PersonsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

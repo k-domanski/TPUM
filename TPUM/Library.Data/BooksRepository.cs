@@ -7,35 +7,28 @@ using Library.Data.Interface;
 
 namespace Library.Data
 {
-    public class BooksRepository : IBookRepository
+    public class BooksRepository : IBooksRepository
     {
-        private IBookFactory _bookFactory;
         private List<IBook> _books;
 
-        public BooksRepository(IBookFactory bookFactory)
+        public BooksRepository()
         {
-            _bookFactory = bookFactory;
-            if (_bookFactory == null)
-            {
-                throw new ArgumentNullException(nameof(bookFactory), "Book Factory can't be null");
-            }
             _books = new List<IBook>();
         }
 
-        public bool AddBook(Guid isbn, string author, string title)
+        public bool AddBook(IBook book)
         {
-            IBook newBook = _bookFactory.CreateBook(isbn, author, title);
-            if (_books.Exists(book => book.GetISBN() == newBook.GetISBN()))
+            if (_books.Contains(book))
             {
                 return false;
             }
-            _books.Add(newBook);
+            _books.Add(book);
             return true;
         }
 
-        public bool RemoveBook(Guid isbn)
+        public bool RemoveBook(IBook book)
         {
-            return _books.RemoveAll((book) => book.GetISBN() == isbn) > 0;
+            return _books.Remove(book);
         }
 
         public List<IBook> FindBooksByPredicate(Predicate<IBook> predicate)

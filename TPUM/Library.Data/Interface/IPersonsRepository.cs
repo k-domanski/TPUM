@@ -5,8 +5,8 @@ namespace Library.Data.Interface
 {
     public interface IPersonsRepository
     {
-        bool AddPerson(Guid id, string firstName, string surname);
-        bool RemovePerson(Guid id);
+        bool AddPerson(IPerson person);
+        bool RemovePerson(IPerson person);
         List<IPerson> FindPersonByPredicate(Predicate<IPerson> predicate);
     }
 }

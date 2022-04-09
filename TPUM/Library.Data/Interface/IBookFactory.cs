@@ -8,6 +8,6 @@ namespace Library.Data.Interface
 {
     public interface IBookFactory
     {
-        IBook CreateBook(Guid isbn, string author, string title);
+        IBook Create();
     }
 }

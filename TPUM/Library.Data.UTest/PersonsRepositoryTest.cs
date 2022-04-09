@@ -6,15 +6,15 @@ namespace Library.Data.UTest
 {
     internal class ValidPersonFactory : IPersonFactory
     {
-        public IPerson CreatePerson(Guid id, string firstName, string surname)
+        public IPerson Create()
         {
-            return new Person(id, firstName, surname);
+            return new Person(Guid.NewGuid(), "Ala", "Kot");
         }
     }
 
     internal class InvalidPersonFactory : IPersonFactory
     {
-        public IPerson CreatePerson(Guid id, string firstName, string surname)
+        public IPerson Create()
         {
             return new Person(Guid.Empty, "Ala", "Kot");
         }
@@ -31,13 +31,6 @@ namespace Library.Data.UTest
         {
             _validFactory = new ValidPersonFactory();
             _invalidFactory = new InvalidPersonFactory();
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructRepository_NullBookFactory_ThrowArgumentNullException()
-        {
-            IPersonsRepository repository = new PersonsRepository(null);
         }
 
         //TODO: More tests
