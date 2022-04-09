@@ -30,5 +30,43 @@ namespace Library.Model
                 return books;
             }
         }
+
+        public IEnumerable<Person> user
+        {
+            get
+            {
+                List<Person> people = new List<Person>()
+                {
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"}
+                };
+                return people;
+            }
+        }
+
+        public IEnumerable<Lending> lending
+        {
+            get
+            {
+                List<Lending> lendings = new List<Lending>()
+                {
+                    new Lending() {userID = user.ToList()[0].id, bookISBN = book.ToList()[0].isbn},
+                    new Lending() {userID = user.ToList()[1].id, bookISBN = book.ToList()[1].isbn},
+                    new Lending() {userID = user.ToList()[2].id, bookISBN = book.ToList()[2].isbn},
+                    new Lending() {userID = user.ToList()[3].id, bookISBN = book.ToList()[3].isbn},
+                    new Lending() {userID = user.ToList()[4].id, bookISBN = book.ToList()[4].isbn}
+                };
+                return lendings;
+            }
+        }
     }
 }
