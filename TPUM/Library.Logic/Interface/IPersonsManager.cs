@@ -7,8 +7,8 @@ namespace Library.Logic.Interface
     public interface IPersonsManager
     {
         bool CreatePerson(PersonInfo initData);
-        List<IPerson> GetPersons(IFilter<IPerson> filter);
-        bool UpdatePerson(IPerson person, IPersonFactory personFactory);
-        bool RemovePerson(IPerson person);
+        List<PersonInfo> GetPersons(IFilter<PersonInfo> filter);
+        bool UpdatePerson(PersonInfo original, PersonInfo updated);
+        bool RemovePerson(PersonInfo person);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Library.Data.Interface;
 using Library.Logic.Factories;
 using Library.Logic.Interface;
@@ -19,25 +20,54 @@ namespace Library.Logic
             return _library.dataLayer.GetLendingsRepository().AddLending(factory.Create());
         }
 
-        public List<ILending> GetLendings(IFilter<ILending> filter)
+        public List<LendingInfo> GetLendings(IFilter<LendingInfo> filter)
         {
-            return _library.dataLayer.GetLendingsRepository().FindLendingsByPredicate(filter.Match);
+            return _library.dataLayer.GetLendingsRepository().GetLendings().ConvertAll(Library.ToLendingInfo)
+                .FindAll(filter.Match);
         }
 
-        public bool UpdateLending(ILending lending, ILendingFactory lendingFactory)
+        public bool UpdateLending(LendingInfo original, LendingInfo updated)
         {
             ILendingsRepository repository = _library.dataLayer.GetLendingsRepository();
-            bool removed = repository.RemoveLending(lending);
+            Predicate<ILending> predicate = (item) =>
+            {
+                return item.GetBookID() == updated.bookID && item.GetPersonID() == updated.personID;
+            };
+            if (updated.bookID != original.bookID && updated.personID != original.personID)
+            {
+                bool exists = repository.FindLendingsByPredicate(predicate).Count > 0;
+                if (exists)
+                {   
+                    return false;
+                }
+            }
+
+            List<ILending> oldLending = repository.FindLendingsByPredicate(predicate);
+            if (oldLending.Count != 1)
+            {
+                return false;
+            }
+
+            /* ++++ Atomic Operation ++++ */
+            bool removed = repository.RemoveLending(oldLending[0]);
             if (!removed)
             {
                 return false;
             }
-            return repository.AddLending(lendingFactory.Create());
+            bool added = repository.AddLending(Library.ToLending(updated));
+            /* ---- Atomic Operation ---- */
+            return added;
         }
 
-        public bool RemoveLending(ILending lending)
+        public bool RemoveLending(LendingInfo lending)
         {
-            return _library.dataLayer.GetLendingsRepository().RemoveLending(lending);
+            List<ILending> target = _library.dataLayer.GetLendingsRepository().FindLendingsByPredicate(item =>
+                item.GetBookID() == lending.bookID && item.GetPersonID() == lending.personID);
+            if (target.Count != 1)
+            {
+                return false;
+            }
+            return _library.dataLayer.GetLendingsRepository().RemoveLending(target[0]);
         }
     }
 }

@@ -13,6 +13,11 @@ namespace Library.Data
             _lendings = new List<ILending>();
         }
 
+        public List<ILending> GetLendings()
+        {
+            return _lendings;
+        }
+
         public bool AddLending(ILending lending)
         {
             if (_lendings.Contains(lending))

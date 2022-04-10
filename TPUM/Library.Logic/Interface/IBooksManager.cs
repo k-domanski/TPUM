@@ -6,8 +6,8 @@ namespace Library.Logic.Interface
     public interface IBooksManager
     {
         bool CreateBook(BookInfo initData);
-        List<IBook> GetBooks(IFilter<IBook> filter);
-        bool UpdateBook(IBook book, IBookFactory bookFactory);
-        bool RemoveBook(IBook book);
+        List<BookInfo> GetBooks(IFilter<BookInfo> filter);
+        bool UpdateBook(BookInfo original, BookInfo updated);
+        bool RemoveBook(BookInfo book);
     }
 }

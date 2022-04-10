@@ -7,7 +7,7 @@ using Library.Logic.Interface;
 
 namespace Library.Logic.Filters
 {
-    public class BookIDFilter : IFilter<IBook>
+    public class BookIDFilter : IFilter<BookInfo>
     {
         public Guid id { get; }
 
@@ -16,13 +16,13 @@ namespace Library.Logic.Filters
             this.id = id;
         }
 
-        public bool Match(IBook item)
+        public bool Match(BookInfo item)
         {
-            return item.GetBookID() == id;
+            return item.id == id;
         }
     }
 
-    public class BookISBNFilter : IFilter<IBook>
+    public class BookISBNFilter : IFilter<BookInfo>
     {
         private string isbn { get; }
 
@@ -31,37 +31,37 @@ namespace Library.Logic.Filters
             this.isbn = isbn;
         }
 
-        public bool Match(IBook item)
+        public bool Match(BookInfo item)
         {
-            return String.Equals(isbn, item.GetISBN());
+            return String.Equals(isbn, item.isbn);
         }
     }
 
-    public class BookAuthorFilter : StringLinguisticFilter<IBook>
+    public class BookAuthorFilter : StringLinguisticFilter<BookInfo>
     {
         public BookAuthorFilter(string pattern) : base(pattern)
         {
         }
 
-        public override string GetString(IBook item)
+        public override string GetString(BookInfo item)
         {
-            return item.GetAuthor();
+            return item.author;
         }
     }
 
-    public class BookTitleFilter : StringLinguisticFilter<IBook>
+    public class BookTitleFilter : StringLinguisticFilter<BookInfo>
     {
         public BookTitleFilter(string pattern) : base(pattern)
         {
         }
 
-        public override string GetString(IBook item)
+        public override string GetString(BookInfo item)
         {
-            return item.GetTitle();
+            return item.title;
         }
     }
 
-    public class BookAvailabilityFilter : IFilter<IBook>
+    public class BookAvailabilityFilter : IFilter<BookInfo>
     {
         public bool available { get; }
 
@@ -70,9 +70,9 @@ namespace Library.Logic.Filters
             this.available = available;
         }
 
-        public bool Match(IBook item)
+        public bool Match(BookInfo item)
         {
-            return item.IsAvailable() == available;
+            return item.isAvailable == available;
         }
     }
 }

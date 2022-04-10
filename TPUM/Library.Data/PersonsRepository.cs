@@ -13,6 +13,11 @@ namespace Library.Data
             _persons = new List<IPerson>();
         }
 
+        public List<IPerson> GetPersons()
+        {
+            return _persons;
+        }
+
         public bool AddPerson(IPerson person)
         {
             if (_persons.Contains(person))
@@ -28,7 +33,7 @@ namespace Library.Data
             return _persons.Remove(person);
         }
 
-        public List<IPerson> FindPersonByPredicate(Predicate<IPerson> predicate)
+        public List<IPerson> FindPersonsByPredicate(Predicate<IPerson> predicate)
         {
             return _persons.FindAll(predicate);
         }

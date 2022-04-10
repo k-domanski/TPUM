@@ -15,7 +15,7 @@ namespace Library.Logic
         public IPersonsManager personsManager { get; private set; }
         public ILendingsManager lendingsManager { get; private set; }
 
-        public IFilter<IBook> bookAvailableFilter { get; }
+        public IFilter<BookInfo> bookAvailableFilter { get; }
 
         public Library(ILibraryDataLayer dataLayer)
         {
@@ -29,7 +29,7 @@ namespace Library.Logic
 
         public List<BookInfo> GetAvailableBooks()
         {
-            return booksManager.GetBooks(bookAvailableFilter).ConvertAll(Library.ToBookInfo);
+            return booksManager.GetBooks(bookAvailableFilter);
         }
 
         // Conversion functions
@@ -62,6 +62,21 @@ namespace Library.Logic
                 bookID = lending.GetBookID(),
                 personID = lending.GetPersonID()
             };
+        }
+
+        internal static Book ToBook(BookInfo info)
+        {
+            return new Book(info.id, info.isbn, info.author, info.title);
+        }
+
+        internal static Person ToPerson(PersonInfo info)
+        {
+            return new Person(info.id, info.firstName, info.surname);
+        }
+
+        internal static Lending ToLending(LendingInfo info)
+        {
+            return new Lending(info.personID, info.bookID);
         }
     }
 }

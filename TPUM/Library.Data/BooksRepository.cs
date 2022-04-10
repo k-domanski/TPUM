@@ -16,6 +16,11 @@ namespace Library.Data
             _books = new List<IBook>();
         }
 
+        public List<IBook> GetBooks()
+        {
+            return _books;
+        }
+
         public bool AddBook(IBook book)
         {
             if (_books.Contains(book))
