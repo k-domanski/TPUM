@@ -32,6 +32,7 @@ namespace Library.Model
             library.onLendingAdded += HandleLendingAdded;
 
             library.onBookRemoved += HandleBookRemoved;
+            library.onPersonRemoved += HandlePersonRemoved;
             library.onLendingRemoved += HandleLendingRemoved;
 
             books = new ObservableCollection<Book>();
@@ -82,6 +83,12 @@ namespace Library.Model
         {
             books.Remove(ModelLayer.ToBook(info));
         }
+
+        internal void HandlePersonRemoved(PersonInfo info)
+        {
+            users.Remove(ModelLayer.ToPerson(info));
+        }
+
 
         internal void HandleLendingRemoved(LendingInfo info)
         {

@@ -41,6 +41,7 @@ namespace Library.Logic
             dataLayer.GetLendingsRepository().onLendingAdded += HandleLendingAdded;
 
             dataLayer.GetBooksRepository().onBookRemoved += HandleBookRemoved;
+            dataLayer.GetPersonsRepository().onPersonRemoved += HandlePersonRemoved;
             dataLayer.GetLendingsRepository().onLendingRemoved += HandleLendingRemoved;
         }
 

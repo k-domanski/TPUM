@@ -7,6 +7,7 @@ namespace Library.Data
     public class PersonsRepository : IPersonsRepository
     {
         public event Action<IPerson> onPersonAdded;
+        public event Action<IPerson> onPersonRemoved;
         private List<IPerson> _persons;
 
         public PersonsRepository()
@@ -33,7 +34,12 @@ namespace Library.Data
 
         public bool RemovePerson(IPerson person)
         {
-            return _persons.Remove(person);
+            if (_persons.Remove(person))
+            {
+                onPersonRemoved?.Invoke(person);
+                return true;
+            }
+            return false;
         }
 
         public List<IPerson> FindPersonsByPredicate(Predicate<IPerson> predicate)
