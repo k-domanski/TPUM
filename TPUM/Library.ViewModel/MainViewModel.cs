@@ -38,7 +38,7 @@ namespace Library.ViewModel
         }
 
 
-        public IWindow PersonWindow { get; set; }
+        public Lazy<IWindow> PersonWindow { get; set; }
         public void HandleCreateBook()
         {
             //TODO: Should open the book creation window instead
@@ -49,7 +49,7 @@ namespace Library.ViewModel
 
         public void HandleCreateUser()
         {
-            IWindow child = PersonWindow;
+            IWindow child = PersonWindow.Value;
             child.Show();
         }
         #region Private

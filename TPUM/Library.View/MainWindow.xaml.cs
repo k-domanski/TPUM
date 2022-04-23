@@ -21,7 +21,6 @@ namespace Library.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainViewModel _vm;
 
         public MainWindow()
         {
@@ -31,14 +30,15 @@ namespace Library.View
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            _vm = (MainViewModel)DataContext;
-            _vm.PersonWindow = new PersonWindow();
+            MainViewModel _vm = (MainViewModel)DataContext;
+            _vm.PersonWindow = new Lazy<IWindow>(() => new PersonWindow());
         }
 
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
-            _vm.PersonWindow = new PersonWindow();
+            MainViewModel _vm = (MainViewModel)DataContext;
+            _vm.PersonWindow = new Lazy<IWindow>(() => new PersonWindow());
         }
     }
 }
