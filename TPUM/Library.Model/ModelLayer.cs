@@ -8,20 +8,20 @@ using Library.Logic.Filters;
 
 namespace Library.Model
 {
-    public class DataLayer
+    public class ModelLayer
     {
-        public static DataLayer CreateDefault()
+        public static ModelLayer CreateDefault()
         {
-            return new DataLayer(Logic.Library.CreateDefault());
+            return new ModelLayer(Logic.Library.CreateDefault());
         }
 
         private ILibrary library;
-        public DataLayer(ILibrary library)
+        public ModelLayer(ILibrary library)
         {
             this.library = library;
         }
 
-        public IEnumerable<Book> book => library.GetBooksManager().GetBooks(new PassFilter<BookInfo>()).ConvertAll(DataLayer.ToBook);
+        public IEnumerable<Book> book => library.GetBooksManager().GetBooks(new PassFilter<BookInfo>()).ConvertAll(ModelLayer.ToBook);
 
         public IEnumerable<Person> user
         {

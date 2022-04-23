@@ -12,10 +12,10 @@ namespace Library.ViewModel
     {
         public MainViewModel()
         {
-            _dataLayer = DataLayer.CreateDefault();
-            _books = new ObservableCollection<Book>(_dataLayer.book);
-            _users = new ObservableCollection<Person>(_dataLayer.user);
-            _lendings = new ObservableCollection<Lending>(_dataLayer.lending);
+            _modelLayer = ModelLayer.CreateDefault();
+            _books = new ObservableCollection<Book>(_modelLayer.book);
+            _users = new ObservableCollection<Person>(_modelLayer.user);
+            _lendings = new ObservableCollection<Lending>(_modelLayer.lending);
         }
         public ObservableCollection<Book> books
         {
@@ -47,7 +47,7 @@ namespace Library.ViewModel
         private ObservableCollection<Book> _books;
         private ObservableCollection<Person> _users;
         private ObservableCollection<Lending> _lendings;
-        private DataLayer _dataLayer;
+        private ModelLayer _modelLayer;
         #endregion
     }
 }
