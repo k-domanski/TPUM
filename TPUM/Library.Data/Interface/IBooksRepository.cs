@@ -6,6 +6,7 @@ namespace Library.Data.Interface
     public interface IBooksRepository
     {
         event Action<IBook> onBookAdded;
+        event Action<IBook> onBookRemoved;
         List<IBook> GetBooks();
         bool AddBook(IBook book);
         bool RemoveBook(IBook book);

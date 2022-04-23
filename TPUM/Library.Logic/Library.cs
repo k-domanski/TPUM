@@ -14,6 +14,9 @@ namespace Library.Logic
         public event Action<BookInfo> onBookAdded;
         public event Action<PersonInfo> onPersonAdded;
         public event Action<LendingInfo> onLendingAdded;
+        public event Action<BookInfo> onBookRemoved;
+        public event Action<PersonInfo> onPersonRemoved;
+        public event Action<LendingInfo> onLendingRemoved;
 
         public ILibraryDataLayer dataLayer { get; private set; }
         public IBooksManager booksManager { get; private set; }
@@ -21,6 +24,8 @@ namespace Library.Logic
         public ILendingsManager lendingsManager { get; private set; }
 
         public IFilter<BookInfo> bookAvailableFilter { get; }
+
+        private Simulation simulation;
 
         public Library(ILibraryDataLayer dataLayer)
         {
@@ -34,12 +39,18 @@ namespace Library.Logic
             dataLayer.GetBooksRepository().onBookAdded += HandleBookAdded;
             dataLayer.GetPersonsRepository().onPersonAdded += HandlePersonAdded;
             dataLayer.GetLendingsRepository().onLendingAdded += HandleLendingAdded;
+
+            dataLayer.GetBooksRepository().onBookRemoved += HandleBookRemoved;
+            dataLayer.GetLendingsRepository().onLendingRemoved += HandleLendingRemoved;
         }
 
 
         public void Initialize()
         {
             AddInitialLibraryData();
+            simulation = new Simulation(this, 2.0f);
+            simulation.Start();
+
         }
 
         public IBooksManager GetBooksManager()
@@ -57,6 +68,16 @@ namespace Library.Logic
             return lendingsManager;
         }
 
+        public bool LendBook(Guid bookID, Guid personID)
+        {
+            return lendingsManager.CreateLending(new LendingInfo { bookID = bookID, personID = personID });
+        }
+
+        public bool ReturnBook(LendingInfo lending)
+        {
+            return lendingsManager.RemoveLending(lending);
+        }
+
         public static ILibrary CreateDefault()
         {
             return new Library(LibraryDataLayer.CreateDefault());
@@ -71,7 +92,7 @@ namespace Library.Logic
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
-            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Mariano Italiano", title = "Przepis na zajebiste spaghetti" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Mariano Italiano", title = "Przepis na spaghetti" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
@@ -126,6 +147,21 @@ namespace Library.Logic
         void HandleLendingAdded(ILending lending)
         {
             onLendingAdded?.Invoke(Library.ToLendingInfo(lending));
+        }
+
+        void HandleBookRemoved(IBook book)
+        {
+            onBookRemoved?.Invoke(Library.ToBookInfo(book));
+        }
+
+        void HandlePersonRemoved(IPerson person)
+        {
+            onPersonRemoved?.Invoke(Library.ToPersonInfo(person));
+        }
+
+        void HandleLendingRemoved(ILending lending)
+        {
+            onLendingRemoved?.Invoke(Library.ToLendingInfo(lending));
         }
 
         // Conversion functions
