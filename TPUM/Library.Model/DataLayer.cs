@@ -3,33 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Logic;
+using Library.Logic.Filters;
 
 namespace Library.Model
 {
     public class DataLayer
     {
-        public IEnumerable<Book> book
+        public static DataLayer CreateDefault()
         {
-            get
-            {
-                List<Book> books = new List<Book>()
-                {
-                    new Book() {isbn = Guid.NewGuid(), author = "Adam Mickiewicz", title = "Pan Tadeusz", count = 5 },
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 3},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 4},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 1},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 5},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 3},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 6},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 1},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 2},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 2},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 3},
-                    new Book() {isbn = Guid.NewGuid(), author = "Stefan Żeromski", title = "Ludzie bezdomni", count = 5}
-                };
-                return books;
-            }
+            return new DataLayer(Logic.Library.CreateDefault());
         }
+
+        private ILibrary library;
+        public DataLayer(ILibrary library)
+        {
+            this.library = library;
+        }
+
+        public IEnumerable<Book> book => library.GetBooksManager().GetBooks(new PassFilter<BookInfo>()).ConvertAll(DataLayer.ToBook);
 
         public IEnumerable<Person> user
         {
@@ -37,17 +29,17 @@ namespace Library.Model
             {
                 List<Person> people = new List<Person>()
                 {
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"}
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
+                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"}
                 };
                 return people;
             }
@@ -59,14 +51,19 @@ namespace Library.Model
             {
                 List<Lending> lendings = new List<Lending>()
                 {
-                    new Lending() {userID = user.ToList()[0].id, bookISBN = book.ToList()[0].isbn},
-                    new Lending() {userID = user.ToList()[1].id, bookISBN = book.ToList()[1].isbn},
-                    new Lending() {userID = user.ToList()[2].id, bookISBN = book.ToList()[2].isbn},
-                    new Lending() {userID = user.ToList()[3].id, bookISBN = book.ToList()[3].isbn},
-                    new Lending() {userID = user.ToList()[4].id, bookISBN = book.ToList()[4].isbn}
+                    //new Lending() {userID = user.ToList()[0].id, bookID = book.ToList()[0].id},
+                    //new Lending() {userID = user.ToList()[1].id, bookID = book.ToList()[1].id},
+                    //new Lending() {userID = user.ToList()[2].id, bookID = book.ToList()[2].id},
+                    //new Lending() {userID = user.ToList()[3].id, bookID = book.ToList()[3].id},
+                    //new Lending() {userID = user.ToList()[4].id, bookID = book.ToList()[4].id}
                 };
                 return lendings;
             }
+        }
+
+        internal static Book ToBook(BookInfo bookInfo)
+        {
+            return new Book() { id = bookInfo.id, author = bookInfo.author, title = bookInfo.title, isbn = bookInfo.isbn};
         }
     }
 }

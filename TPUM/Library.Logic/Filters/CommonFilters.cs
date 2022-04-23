@@ -47,6 +47,14 @@ namespace Library.Logic.Filters
         }
     }
 
+    public class PassFilter<T> : IFilter<T>
+    {
+        public bool Match(T item)
+        {
+            return true;
+        }
+    }
+
     public abstract class StringLinguisticFilter<T> : IFilter<T>
     {
         protected string pattern { get; set; }

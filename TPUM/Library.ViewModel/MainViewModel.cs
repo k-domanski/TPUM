@@ -12,7 +12,7 @@ namespace Library.ViewModel
     {
         public MainViewModel()
         {
-            _dataLayer = new DataLayer();
+            _dataLayer = DataLayer.CreateDefault();
             _books = new ObservableCollection<Book>(_dataLayer.book);
             _users = new ObservableCollection<Person>(_dataLayer.user);
             _lendings = new ObservableCollection<Lending>(_dataLayer.lending);

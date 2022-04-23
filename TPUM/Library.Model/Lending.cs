@@ -9,7 +9,7 @@ namespace Library.Model
     public class Lending
     {
         public Guid userID { get; set; }
-        public Guid bookISBN { get; set; }
+        public Guid bookID { get; set; }
 
     }
 }

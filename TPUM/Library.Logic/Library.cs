@@ -2,12 +2,13 @@
 using System.Reflection;
 using Library.Data;
 using Library.Data.Interface;
+using Library.Logic.Factories;
 using Library.Logic.Filters;
 using Library.Logic.Interface;
 
 namespace Library.Logic
 {
-    public class Library
+    public class Library : ILibrary
     {
         public ILibraryDataLayer dataLayer { get; private set; }
 
@@ -25,15 +26,48 @@ namespace Library.Logic
             lendingsManager = new LendingsManager(this);
 
             bookAvailableFilter = new BookAvailabilityFilter(true);
+
+            AddInitialLibraryData();
         }
 
-        public List<BookInfo> GetAvailableBooks()
+        public IBooksManager GetBooksManager()
         {
-            return booksManager.GetBooks(bookAvailableFilter);
+            return booksManager;
+        }
+
+        public IPersonsManager GetPersonsManager()
+        {
+            return personsManager;
+        }
+
+        public ILendingsManager GetLendingsManager()
+        {
+            return lendingsManager;
+        }
+
+        public static ILibrary CreateDefault()
+        {
+            return new Library(LibraryDataLayer.CreateDefault());
+        }
+
+        internal void AddInitialLibraryData()
+        {
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Adam Mickiewicz", title = "Pan Tadeusz" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
         }
 
         // Conversion functions
-        public static BookInfo ToBookInfo(IBook book)
+        internal static BookInfo ToBookInfo(IBook book)
         {
             return new BookInfo
             {
@@ -45,7 +79,8 @@ namespace Library.Logic
             };
         }
 
-        public static PersonInfo ToPersonInfo(IPerson person)
+
+        internal static PersonInfo ToPersonInfo(IPerson person)
         {
             return new PersonInfo
             {
@@ -55,7 +90,7 @@ namespace Library.Logic
             };
         }
 
-        public static LendingInfo ToLendingInfo(ILending lending)
+        internal static LendingInfo ToLendingInfo(ILending lending)
         {
             return new LendingInfo
             {

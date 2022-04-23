@@ -91,7 +91,7 @@
                                             <Label Content="{Binding userID}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding bookISBN}"/>
+                                            <Label Content="{Binding bookID}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <Menu VerticalAlignment="Center">

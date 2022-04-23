@@ -8,12 +8,14 @@ namespace Library.Model
 {
     public class Book
     {
-        public Guid isbn { get; set; }
+        public Guid id { get; set; }
+        public string isbn { get; set; }
 
         public string author { get; set; }
 
         public string title { get; set; }
 
+        // Count should be calculated based on the content in data layer - ILibrary.GetBooksManager().GetBooks(new GetBooksWithISBNFilter()).Count;
         public int count { get; set; }
     }
 }
