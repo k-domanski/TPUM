@@ -49,6 +49,7 @@
     <Compile Include="Filters\BookFilters.cs" />
     <Compile Include="Filters\CommonFilters.cs" />
     <Compile Include="Filters\LendingFilters.cs" />
+    <Compile Include="Filters\PersonFilters.cs" />
     <Compile Include="Interface\ILibrary.cs" />
     <Compile Include="Interface\IBooksManager.cs" />
     <Compile Include="Interface\IFilter.cs" />

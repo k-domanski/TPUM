@@ -11,5 +11,9 @@ namespace Library.Model
         public Guid userID { get; set; }
         public Guid bookID { get; set; }
 
+        public string userName { get; set; }
+        public string userSurname { get; set; }
+        public string bookTitle { get; set; }
+        public string bookAuthor { get; set; }
     }
 }

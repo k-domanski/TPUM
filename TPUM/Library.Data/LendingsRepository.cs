@@ -6,12 +6,14 @@ namespace Library.Data
 {
     public class LendingsRepository : ILendingsRepository
     {
+        public event Action<ILending> onLendingAdded;
         private List<ILending> _lendings;
 
         public LendingsRepository()
         {
             _lendings = new List<ILending>();
         }
+
 
         public List<ILending> GetLendings()
         {
@@ -26,6 +28,7 @@ namespace Library.Data
             }
 
             _lendings.Add(lending);
+            onLendingAdded?.Invoke(lending);
             return true;
         }
 

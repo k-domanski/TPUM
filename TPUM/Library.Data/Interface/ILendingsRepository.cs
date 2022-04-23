@@ -5,6 +5,7 @@ namespace Library.Data.Interface
 {
     public interface ILendingsRepository
     {
+        event Action<ILending> onLendingAdded;
         List<ILending> GetLendings();
         bool AddLending(ILending lending);
         bool RemoveLending(ILending lending);

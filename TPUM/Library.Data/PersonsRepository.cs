@@ -6,12 +6,14 @@ namespace Library.Data
 {
     public class PersonsRepository : IPersonsRepository
     {
+        public event Action<IPerson> onPersonAdded;
         private List<IPerson> _persons;
 
         public PersonsRepository()
         {
             _persons = new List<IPerson>();
         }
+
 
         public List<IPerson> GetPersons()
         {
@@ -25,6 +27,7 @@ namespace Library.Data
                 return false;
             }
             _persons.Add(person);
+            onPersonAdded?.Invoke(person);
             return true;
         }
 

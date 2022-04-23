@@ -11,10 +11,11 @@ namespace Library.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        public ICommand createNewBookCommand { get; set; }
+
         public MainViewModel()
         {
             _modelLayer = ModelLayer.CreateDefault();
-
 
             createNewBookCommand = new ViewAction((obj) => HandleCreateBook(), null);
         }
@@ -36,9 +37,6 @@ namespace Library.ViewModel
         {
             _modelLayer.CreateBook(new Book{author = "Ala", title = "Ma Kota", isbn = "9870-234-456-234"});
         }
-
-        public ICommand createNewBookCommand { get; set; }
-
         #region Private
 
         private ModelLayer _modelLayer;

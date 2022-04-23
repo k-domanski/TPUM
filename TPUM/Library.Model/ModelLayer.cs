@@ -26,10 +26,14 @@ namespace Library.Model
             this.library = library;
 
             library.onBookAdded += HandleBookAdded;
+            library.onPersonAdded += HandlePersonAdded;
+            library.onLendingAdded += HandleLendingAdded;
 
-            books = new ObservableCollection<Book>(book);
-            users = new ObservableCollection<Person>(user);
-            lendings = new ObservableCollection<Lending>(lending);
+            books = new ObservableCollection<Book>();
+            users = new ObservableCollection<Person>();
+            lendings = new ObservableCollection<Lending>();
+
+            library.Initialize();
         }
 
         public IEnumerable<Book> book => library.GetBooksManager().GetBooks(new PassFilter<BookInfo>()).ConvertAll(ModelLayer.ToBook);
@@ -41,6 +45,32 @@ namespace Library.Model
         internal void HandleBookAdded(BookInfo info)
         {
             books.Add(ModelLayer.ToBook(info));
+        }
+
+        internal void HandlePersonAdded(PersonInfo info)
+        {
+            users.Add(ModelLayer.ToPerson(info));
+        }
+
+        internal void HandleLendingAdded(LendingInfo info)
+        {
+            Lending lending = ToLending(info);
+            lending.bookAuthor = lending.bookTitle = lending.userName = lending.userSurname = "Not Found";
+            var books = library.GetBooksManager().GetBooks(new BookIDFilter(info.bookID));
+            var persons = library.GetPersonsManager().GetPersons(new PersonIDFilter(info.personID));
+            if (books.Count == 1)
+            {
+                lending.bookAuthor = books[0].author;
+                lending.bookTitle = books[0].title;
+            }
+
+            if (persons.Count == 1)
+            {
+                lending.userName = persons[0].firstName;
+                lending.userSurname = persons[0].surname;
+            }
+
+            lendings.Add(lending);
         }
 
         public void CreateBook(Book book)

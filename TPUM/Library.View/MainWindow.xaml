@@ -88,10 +88,14 @@
                                 <WrapPanel>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding userID}"/>
+                                            <!--<Label Content="{Binding userID}"/>-->
+                                            <Label Content="{Binding userName}"/>
+                                            <Label Content="{Binding userSurname}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding bookID}"/>
+                                            <!--<Label Content="{Binding bookID}"/>-->
+                                            <Label Content="{Binding bookTitle}"/>
+                                            <Label Content="{Binding bookAuthor}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <Menu VerticalAlignment="Center">

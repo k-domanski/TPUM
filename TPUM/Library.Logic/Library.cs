@@ -12,6 +12,8 @@ namespace Library.Logic
     public class Library : ILibrary
     {
         public event Action<BookInfo> onBookAdded;
+        public event Action<PersonInfo> onPersonAdded;
+        public event Action<LendingInfo> onLendingAdded;
 
         public ILibraryDataLayer dataLayer { get; private set; }
         public IBooksManager booksManager { get; private set; }
@@ -30,10 +32,15 @@ namespace Library.Logic
             bookAvailableFilter = new BookAvailabilityFilter(true);
 
             dataLayer.GetBooksRepository().onBookAdded += HandleBookAdded;
-
-            AddInitialLibraryData();
+            dataLayer.GetPersonsRepository().onPersonAdded += HandlePersonAdded;
+            dataLayer.GetLendingsRepository().onLendingAdded += HandleLendingAdded;
         }
 
+
+        public void Initialize()
+        {
+            AddInitialLibraryData();
+        }
 
         public IBooksManager GetBooksManager()
         {
@@ -109,6 +116,16 @@ namespace Library.Logic
         void HandleBookAdded(IBook book)
         {
             onBookAdded?.Invoke(Library.ToBookInfo(book));
+        }
+
+        void HandlePersonAdded(IPerson person)
+        {
+            onPersonAdded?.Invoke(Library.ToPersonInfo(person));
+        }
+
+        void HandleLendingAdded(ILending lending)
+        {
+            onLendingAdded?.Invoke(Library.ToLendingInfo(lending));
         }
 
         // Conversion functions
