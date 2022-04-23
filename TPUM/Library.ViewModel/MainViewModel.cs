@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Library.Model;
 
 namespace Library.ViewModel
@@ -16,6 +17,8 @@ namespace Library.ViewModel
             _books = new ObservableCollection<Book>(_modelLayer.book);
             _users = new ObservableCollection<Person>(_modelLayer.user);
             _lendings = new ObservableCollection<Lending>(_modelLayer.lending);
+
+            createNewBookCommand = new ViewAction((obj) => HandleCreateBook(), null);
         }
         public ObservableCollection<Book> books
         {
@@ -42,6 +45,13 @@ namespace Library.ViewModel
                 _lendings = value;
             }
         }
+
+        public void HandleCreateBook()
+        {
+            _modelLayer.CreateBook(new Book{author = "Ala", title = "Ma Kota", isbn = "9870-234-456-234"});
+        }
+
+        public ICommand createNewBookCommand { get; set; }
 
         #region Private
         private ObservableCollection<Book> _books;

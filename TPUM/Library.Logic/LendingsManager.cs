@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Library.Data.Interface;
 using Library.Logic.Factories;
+using Library.Logic.Filters;
 using Library.Logic.Interface;
 
 namespace Library.Logic
@@ -16,7 +17,17 @@ namespace Library.Logic
 
         public bool CreateLending(LendingInfo initData)
         {
+
+            List<BookInfo> books = _library.GetBooksManager().GetBooks(new BookIDFilter(initData.bookID));
+            if (books.Count > 0 && !books[0].isAvailable)
+            {
+                return false;
+            }
+
             CreateLendingFactory factory = new CreateLendingFactory(initData);
+            BookInfo updatedInfo = books[0];
+            updatedInfo.isAvailable = false;
+            _library.GetBooksManager().UpdateBook(books[0], updatedInfo);
             return _library.dataLayer.GetLendingsRepository().AddLending(factory.Create());
         }
 
@@ -37,7 +48,7 @@ namespace Library.Logic
             {
                 bool exists = repository.FindLendingsByPredicate(predicate).Count > 0;
                 if (exists)
-                {   
+                {
                     return false;
                 }
             }

@@ -64,6 +64,41 @@ namespace Library.Logic
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+
+            lendingsManager.CreateLending(new LendingInfo
+            {
+                bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[0].id,
+                personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[0].id
+            });
+
+            lendingsManager.CreateLending(new LendingInfo
+            {
+                bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[1].id,
+                personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[1].id
+            });
+            lendingsManager.CreateLending(new LendingInfo
+            {
+                bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[2].id,
+                personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[2].id
+            });
+            lendingsManager.CreateLending(new LendingInfo
+            {
+                bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[3].id,
+                personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[3].id
+            });
+
         }
 
         // Conversion functions

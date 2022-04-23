@@ -15,7 +15,7 @@ namespace Library.Model
             return new ModelLayer(Logic.Library.CreateDefault());
         }
 
-        private ILibrary library;
+        public ILibrary library { get; }
         public ModelLayer(ILibrary library)
         {
             this.library = library;
@@ -23,47 +23,33 @@ namespace Library.Model
 
         public IEnumerable<Book> book => library.GetBooksManager().GetBooks(new PassFilter<BookInfo>()).ConvertAll(ModelLayer.ToBook);
 
-        public IEnumerable<Person> user
-        {
-            get
-            {
-                List<Person> people = new List<Person>()
-                {
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"},
-                    //new Person() {id = Guid.NewGuid(), firstName = "Stefan", lastName = "Kowalski"}
-                };
-                return people;
-            }
-        }
+        public IEnumerable<Person> user => library.GetPersonsManager().GetPersons(new PassFilter<PersonInfo>()).ConvertAll(ModelLayer.ToPerson);
 
-        public IEnumerable<Lending> lending
+        public IEnumerable<Lending> lending => library.GetLendingsManager().GetLendings(new PassFilter<LendingInfo>()).ConvertAll(ModelLayer.ToLending);
+
+        public void CreateBook(Book book)
         {
-            get
-            {
-                List<Lending> lendings = new List<Lending>()
-                {
-                    //new Lending() {userID = user.ToList()[0].id, bookID = book.ToList()[0].id},
-                    //new Lending() {userID = user.ToList()[1].id, bookID = book.ToList()[1].id},
-                    //new Lending() {userID = user.ToList()[2].id, bookID = book.ToList()[2].id},
-                    //new Lending() {userID = user.ToList()[3].id, bookID = book.ToList()[3].id},
-                    //new Lending() {userID = user.ToList()[4].id, bookID = book.ToList()[4].id}
-                };
-                return lendings;
-            }
+            library.GetBooksManager().CreateBook(ToBookInfo(book));
         }
 
         internal static Book ToBook(BookInfo bookInfo)
         {
-            return new Book() { id = bookInfo.id, author = bookInfo.author, title = bookInfo.title, isbn = bookInfo.isbn};
+            return new Book { id = bookInfo.id, author = bookInfo.author, title = bookInfo.title, isbn = bookInfo.isbn };
+        }
+
+        internal static BookInfo ToBookInfo(Book book)
+        {
+            return new BookInfo { author = book.author, title = book.title, id = book.id, isbn = book.isbn, isAvailable = true };
+        }
+
+        internal static Person ToPerson(PersonInfo personInfo)
+        {
+            return new Person { id = personInfo.id, firstName = personInfo.firstName, lastName = personInfo.surname };
+        }
+
+        internal static Lending ToLending(LendingInfo lendingInfo)
+        {
+            return new Lending { bookID = lendingInfo.bookID, userID = lendingInfo.personID };
         }
     }
 }

@@ -50,7 +50,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="1" Margin="5">DODAJ KSIĄŻKĘ</Button>
+        <Button Grid.Row="1" Margin="5" Command="{Binding createNewBookCommand}">DODAJ KSIĄŻKĘ</Button>
         <ListBox Grid.Column="1" ItemsSource="{Binding people}" Margin="5" Background="LightCyan">
             <ListBox.ItemTemplate>
                 <DataTemplate>
