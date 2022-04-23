@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -15,7 +16,7 @@ namespace Library.View
     /// <summary>
     /// Interaction logic for PersonWindow.xaml
     /// </summary>
-    public partial class PersonWindow : Window
+    public partial class PersonWindow : Window, IWindow
     {
         public PersonWindow()
         {

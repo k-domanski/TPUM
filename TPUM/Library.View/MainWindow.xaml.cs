@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace Library.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainViewModel _vm;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            _vm = (MainViewModel)DataContext;
+            _vm.PersonWindow = new PersonWindow();
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            _vm.PersonWindow = new PersonWindow();
         }
     }
 }

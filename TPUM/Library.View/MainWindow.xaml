@@ -78,7 +78,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Column="1" Grid.Row="1" Margin="5">DODAJ UŻYTKOWNIKA</Button>
+        <Button Grid.Column="1" Grid.Row="1" Margin="5" Command="{Binding createNewUserCommand}">DODAJ UŻYTKOWNIKA</Button>
         <ListBox Grid.Column="2" ItemsSource="{Binding lendings}" Margin="5" Background="LightSalmon">
             <ListBox.ItemTemplate>
                 <DataTemplate>
