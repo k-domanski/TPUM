@@ -71,7 +71,7 @@ namespace Library.Logic
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
-            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
+            booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Mariano Italiano", title = "Przepis na zajebiste spaghetti" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
             booksManager.CreateBook(new BookInfo { isbn = "1234-567-890-157", author = "Stefan Żeromski", title = "Ludzie bezdomni" });
