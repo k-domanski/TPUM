@@ -7,6 +7,8 @@ namespace Library.Data
     public class LendingsRepository : ILendingsRepository
     {
         public event Action<ILending> onLendingAdded;
+        public event Action<ILending> onLendingRemoved;
+
         private List<ILending> _lendings;
 
         public LendingsRepository()
@@ -34,7 +36,13 @@ namespace Library.Data
 
         public bool RemoveLending(ILending lending)
         {
-            return _lendings.Remove(lending);
+            if (_lendings.Remove(lending))
+            {
+                onLendingRemoved?.Invoke(lending);
+                return true;
+            }
+
+            return false;
         }
 
         public List<ILending> FindLendingsByPredicate(Predicate<ILending> predicate)

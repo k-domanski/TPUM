@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Model
 {
-    public class Lending
+    public class Lending : IEquatable<Lending>
     {
         public Guid userID { get; set; }
         public Guid bookID { get; set; }
@@ -15,5 +15,9 @@ namespace Library.Model
         public string userSurname { get; set; }
         public string bookTitle { get; set; }
         public string bookAuthor { get; set; }
+        public bool Equals(Lending other)
+        {
+            return userID == other.userID && bookID == other.bookID;
+        }
     }
 }

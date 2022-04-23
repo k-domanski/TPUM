@@ -19,7 +19,7 @@ namespace Library.Logic
         {
 
             List<BookInfo> books = _library.GetBooksManager().GetBooks(new BookIDFilter(initData.bookID));
-            if (books.Count > 0 && !books[0].isAvailable)
+            if (books.Count == 1 && !books[0].isAvailable)
             {
                 return false;
             }
@@ -78,6 +78,20 @@ namespace Library.Logic
             {
                 return false;
             }
+
+            List<BookInfo> books = _library.GetBooksManager().GetBooks(new BookIDFilter(lending.bookID));
+            if (books.Count != 1)
+            {
+                return false;
+            }
+
+            BookInfo updatedInfo = books[0];
+            updatedInfo.isAvailable = true;
+            if (!_library.GetBooksManager().UpdateBook(books[0], updatedInfo))
+            {
+                return false;
+            }
+
             return _library.dataLayer.GetLendingsRepository().RemoveLending(target[0]);
         }
     }

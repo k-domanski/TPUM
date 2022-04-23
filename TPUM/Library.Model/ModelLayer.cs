@@ -11,6 +11,8 @@ namespace Library.Model
 {
     public class ModelLayer
     {
+        private readonly object _lock = new object();
+
         public ObservableCollection<Book> books { get; private set; }
         public ObservableCollection<Person> users { get; private set; }
         public ObservableCollection<Lending> lendings { get; private set; }
@@ -28,6 +30,10 @@ namespace Library.Model
             library.onBookAdded += HandleBookAdded;
             library.onPersonAdded += HandlePersonAdded;
             library.onLendingAdded += HandleLendingAdded;
+
+            library.onBookRemoved += HandleBookRemoved;
+            library.onPersonRemoved += HandlePersonRemoved;
+            library.onLendingRemoved += HandleLendingRemoved;
 
             books = new ObservableCollection<Book>();
             users = new ObservableCollection<Person>();
@@ -71,6 +77,22 @@ namespace Library.Model
             }
 
             lendings.Add(lending);
+        }
+
+        internal void HandleBookRemoved(BookInfo info)
+        {
+            books.Remove(ModelLayer.ToBook(info));
+        }
+
+        internal void HandlePersonRemoved(PersonInfo info)
+        {
+            users.Remove(ModelLayer.ToPerson(info));
+        }
+
+
+        internal void HandleLendingRemoved(LendingInfo info)
+        {
+            lendings.Remove(ModelLayer.ToLending(info));
         }
 
         public void CreateBook(Book book)

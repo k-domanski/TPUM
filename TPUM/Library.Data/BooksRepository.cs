@@ -10,6 +10,8 @@ namespace Library.Data
     public class BooksRepository : IBooksRepository
     {
         public event Action<IBook> onBookAdded;
+        public event Action<IBook> onBookRemoved;
+
         private List<IBook> _books;
 
         public BooksRepository()
@@ -36,7 +38,13 @@ namespace Library.Data
 
         public bool RemoveBook(IBook book)
         {
-            return _books.Remove(book);
+            if (_books.Remove(book))
+            {
+                onBookRemoved?.Invoke(book);
+                return true;
+            }
+
+            return false;
         }
 
         public List<IBook> FindBooksByPredicate(Predicate<IBook> predicate)

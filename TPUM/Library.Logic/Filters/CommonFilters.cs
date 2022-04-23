@@ -55,6 +55,20 @@ namespace Library.Logic.Filters
         }
     }
 
+    public class ExactMatchFilter<T> : IFilter<T>
+    {
+        private T target;
+        public ExactMatchFilter(T target)
+        {
+            this.target = target;
+        }
+
+        public bool Match(T item)
+        {
+            return target.Equals(item);
+        }
+    }
+
     public abstract class StringLinguisticFilter<T> : IFilter<T>
     {
         protected string pattern { get; set; }
