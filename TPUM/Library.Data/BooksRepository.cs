@@ -9,12 +9,14 @@ namespace Library.Data
 {
     public class BooksRepository : IBooksRepository
     {
+        public event Action<IBook> onBookAdded;
         private List<IBook> _books;
 
         public BooksRepository()
         {
             _books = new List<IBook>();
         }
+
 
         public List<IBook> GetBooks()
         {
@@ -28,6 +30,7 @@ namespace Library.Data
                 return false;
             }
             _books.Add(book);
+            onBookAdded?.Invoke(book);
             return true;
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Library.Data;
 using Library.Data.Interface;
@@ -10,8 +11,9 @@ namespace Library.Logic
 {
     public class Library : ILibrary
     {
-        public ILibraryDataLayer dataLayer { get; private set; }
+        public event Action<BookInfo> onBookAdded;
 
+        public ILibraryDataLayer dataLayer { get; private set; }
         public IBooksManager booksManager { get; private set; }
         public IPersonsManager personsManager { get; private set; }
         public ILendingsManager lendingsManager { get; private set; }
@@ -27,8 +29,11 @@ namespace Library.Logic
 
             bookAvailableFilter = new BookAvailabilityFilter(true);
 
+            dataLayer.GetBooksRepository().onBookAdded += HandleBookAdded;
+
             AddInitialLibraryData();
         }
+
 
         public IBooksManager GetBooksManager()
         {
@@ -99,6 +104,11 @@ namespace Library.Logic
                 personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[3].id
             });
 
+        }
+
+        void HandleBookAdded(IBook book)
+        {
+            onBookAdded?.Invoke(Library.ToBookInfo(book));
         }
 
         // Conversion functions

@@ -9,16 +9,26 @@ namespace Library.Logic
 {
     public class BooksManager : IBooksManager
     {
+        public event Action<BookInfo> onBookCreated;
+
         private Library _library;
         public BooksManager(Library library)
         {
             _library = library;
         }
 
+
         public bool CreateBook(BookInfo initData)
         {
             CreateBookFactory factory = new CreateBookFactory(initData);
-            return _library.dataLayer.GetBooksRepository().AddBook(factory.Create());
+            IBook book = factory.Create();
+            if (_library.dataLayer.GetBooksRepository().AddBook(book))
+            {
+                onBookCreated?.Invoke(Library.ToBookInfo(book));
+                return true;
+            }
+
+            return false;
         }
 
         public List<BookInfo> GetBooks(IFilter<BookInfo> filter)

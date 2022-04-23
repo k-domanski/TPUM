@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,10 @@ namespace Library.Model
 {
     public class ModelLayer
     {
+        public ObservableCollection<Book> books { get; private set; }
+        public ObservableCollection<Person> users { get; private set; }
+        public ObservableCollection<Lending> lendings { get; private set; }
+
         public static ModelLayer CreateDefault()
         {
             return new ModelLayer(Logic.Library.CreateDefault());
@@ -19,6 +24,12 @@ namespace Library.Model
         public ModelLayer(ILibrary library)
         {
             this.library = library;
+
+            library.onBookAdded += HandleBookAdded;
+
+            books = new ObservableCollection<Book>(book);
+            users = new ObservableCollection<Person>(user);
+            lendings = new ObservableCollection<Lending>(lending);
         }
 
         public IEnumerable<Book> book => library.GetBooksManager().GetBooks(new PassFilter<BookInfo>()).ConvertAll(ModelLayer.ToBook);
@@ -26,6 +37,11 @@ namespace Library.Model
         public IEnumerable<Person> user => library.GetPersonsManager().GetPersons(new PassFilter<PersonInfo>()).ConvertAll(ModelLayer.ToPerson);
 
         public IEnumerable<Lending> lending => library.GetLendingsManager().GetLendings(new PassFilter<LendingInfo>()).ConvertAll(ModelLayer.ToLending);
+
+        internal void HandleBookAdded(BookInfo info)
+        {
+            books.Add(ModelLayer.ToBook(info));
+        }
 
         public void CreateBook(Book book)
         {

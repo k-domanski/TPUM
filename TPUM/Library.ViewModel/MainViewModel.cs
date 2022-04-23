@@ -14,36 +14,22 @@ namespace Library.ViewModel
         public MainViewModel()
         {
             _modelLayer = ModelLayer.CreateDefault();
-            _books = new ObservableCollection<Book>(_modelLayer.book);
-            _users = new ObservableCollection<Person>(_modelLayer.user);
-            _lendings = new ObservableCollection<Lending>(_modelLayer.lending);
+
 
             createNewBookCommand = new ViewAction((obj) => HandleCreateBook(), null);
         }
         public ObservableCollection<Book> books
         {
-            get => _books;
-            set
-            {
-                _books = value;
-            }
+            get => _modelLayer.books;
         }
         public ObservableCollection<Person> people
         {
-            get => _users;
-            set
-            {
-                _users = value;
-            }
+            get => _modelLayer.users;
         }
 
         public ObservableCollection<Lending> lendings
         {
-            get => _lendings;
-            set
-            {
-                _lendings = value;
-            }
+            get => _modelLayer.lendings;
         }
 
         public void HandleCreateBook()
@@ -54,9 +40,7 @@ namespace Library.ViewModel
         public ICommand createNewBookCommand { get; set; }
 
         #region Private
-        private ObservableCollection<Book> _books;
-        private ObservableCollection<Person> _users;
-        private ObservableCollection<Lending> _lendings;
+
         private ModelLayer _modelLayer;
         #endregion
     }
