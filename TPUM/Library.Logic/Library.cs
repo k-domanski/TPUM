@@ -200,7 +200,7 @@ namespace Library.Logic
 
         internal static Book ToBook(BookInfo info)
         {
-            return new Book(info.id, info.isbn, info.author, info.title);
+            return new Book(info.id, info.isbn, info.author, info.title, info.isAvailable);
         }
 
         internal static Person ToPerson(PersonInfo info)

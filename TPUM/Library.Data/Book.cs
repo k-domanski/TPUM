@@ -15,12 +15,13 @@ namespace Library.Data
         private string _title;
         public bool isAvailable { get; set; } = true;
 
-        public Book(Guid id, string isbn, string author, string title)
+        public Book(Guid id, string isbn, string author, string title, bool available)
         {
             _id = id;
             _isbn = isbn;
             _author = author;
             _title = title;
+            isAvailable = available;
         }
 
         public Guid GetBookID()

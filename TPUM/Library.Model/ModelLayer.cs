@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Library.Logic;
 using Library.Logic.Filters;
+using Library.Logic.Interface;
 
 namespace Library.Model
 {
     public class ModelLayer
     {
-        private readonly object _lock = new object();
+        private IFilter<BookInfo> activeBookFilter = new PassFilter<BookInfo>();
 
         public ObservableCollection<Book> books { get; private set; }
         public ObservableCollection<Person> users { get; private set; }
@@ -42,15 +43,39 @@ namespace Library.Model
             library.Initialize();
         }
 
-        public IEnumerable<Book> book => library.GetBooksManager().GetBooks(new PassFilter<BookInfo>()).ConvertAll(ModelLayer.ToBook);
+        public IEnumerable<Book> filteredBooks => library.GetBooksManager().GetBooks(activeBookFilter).ConvertAll(ModelLayer.ToBook);
 
         public IEnumerable<Person> user => library.GetPersonsManager().GetPersons(new PassFilter<PersonInfo>()).ConvertAll(ModelLayer.ToPerson);
 
         public IEnumerable<Lending> lending => library.GetLendingsManager().GetLendings(new PassFilter<LendingInfo>()).ConvertAll(ModelLayer.ToLending);
 
+        public void ShouldApplyOnlyAvailableFilter(bool apply)
+        {
+            if (apply)
+            {
+                activeBookFilter = new BookAvailabilityFilter(true);
+            }
+            else
+            {
+                activeBookFilter = new PassFilter<BookInfo>();
+            }
+
+            RefreshBooks();
+        }
+
+        private void RefreshBooks()
+        {
+            books.Clear();
+            foreach (Book book in filteredBooks)
+            {
+                books.Add(book);
+            }
+        }
+
         internal void HandleBookAdded(BookInfo info)
         {
             books.Add(ModelLayer.ToBook(info));
+            RefreshBooks();
         }
 
         internal void HandlePersonAdded(PersonInfo info)
@@ -77,11 +102,14 @@ namespace Library.Model
             }
 
             lendings.Add(lending);
+
+            RefreshBooks();
         }
 
         internal void HandleBookRemoved(BookInfo info)
         {
             books.Remove(ModelLayer.ToBook(info));
+
         }
 
         internal void HandlePersonRemoved(PersonInfo info)
@@ -93,6 +121,7 @@ namespace Library.Model
         internal void HandleLendingRemoved(LendingInfo info)
         {
             lendings.Remove(ModelLayer.ToLending(info));
+            RefreshBooks();
         }
 
         public void CreateBook(Book book)

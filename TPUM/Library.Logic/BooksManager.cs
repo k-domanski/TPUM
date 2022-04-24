@@ -57,14 +57,12 @@ namespace Library.Logic
                 return false;
             }
 
-            /* ++++ Atomic Operation ++++ */
             bool removed = repository.RemoveBook(oldBook[0]);
             if (!removed)
             {
                 return false;
             }
             bool added = repository.AddBook(Library.ToBook(updated));
-            /* ---- Atomic Operation ---- */
             return added;
         }
 
