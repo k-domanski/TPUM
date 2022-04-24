@@ -16,8 +16,7 @@ namespace Library.ViewModel
         public ICommand createNewBookCommand { get; set; }
         public ICommand createNewUserCommand { get; set; }
 
-        public IDialogService createBookService { get =>_createBookService; set { _createBookService = value; } }
-        public IDialogService createUserSercive { get =>_createUserService; set { _createUserService = value; } }
+        public IDialogService dialogService { get =>_dialogService; set { _dialogService = value; } }
 
         public MainViewModel()
         {
@@ -74,7 +73,7 @@ namespace Library.ViewModel
         {
             //TODO: Should open the filteredBooks creation window instead
             var dialog = new CreateBookDialogViewModel("Dodaj", "Dodaj nową książkę.");
-            var result = _createBookService.OpenDialog(dialog);
+            var result = _dialogService.OpenDialog(dialog);
 
             _modelLayer.CreateBook(result);
         }
@@ -82,7 +81,7 @@ namespace Library.ViewModel
         public void HandleCreateUser()
         {
             var dialog = new CreateUserDialogViewModel("Dodaj", "Dodaj nowego użytkownika.");
-            var result = _createUserService.OpenDialog(dialog);
+            var result = _dialogService.OpenDialog(dialog);
 
             //TODO:: Create user _modelLayer.CreateUser(result);
         }
@@ -97,8 +96,7 @@ namespace Library.ViewModel
         private Book _currentBook;
         private Person _currentUser;
         private Lending _currentLending;
-        private IDialogService _createBookService;
-        private IDialogService _createUserService;
+        private IDialogService _dialogService;
         #endregion
     }
 }
