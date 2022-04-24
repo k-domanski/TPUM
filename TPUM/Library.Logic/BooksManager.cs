@@ -22,6 +22,11 @@ namespace Library.Logic
 
         public bool CreateBook(BookInfo initData)
         {
+            if (String.IsNullOrEmpty(initData.author) || String.IsNullOrEmpty(initData.title) || String.IsNullOrEmpty(initData.isbn))
+            {
+                return false;
+            }
+
             lock (_dataLock)
             {
                 CreateBookFactory factory = new CreateBookFactory(initData);

@@ -15,8 +15,8 @@ namespace Library.Model
 
         public string title { get; set; }
 
-        // Count should be calculated based on the content in data layer - ILibrary.GetBooksManager().GetBooks(new GetBooksWithISBNFilter()).Count;
-        public int count { get; set; }
+        public bool isAvailable { get; set; }
+        public string availability { get; set; } = "Dostępna";
         public bool Equals(Book other)
         {
             return id == other.id;
