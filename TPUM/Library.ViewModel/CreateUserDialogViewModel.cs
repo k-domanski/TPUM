@@ -30,9 +30,20 @@ namespace Library.ViewModel
 
         private void CreateUser(IDialogWindow window)
         {
-            CloseDialogWithResult(window, _person);
+            if(IsUserNotValid())
+            {
+                CloseDialogWithResult(window, null);
+            }
+            else
+            {
+                CloseDialogWithResult(window, _person);
+            }
         }
 
+        private bool IsUserNotValid()
+        {
+            return string.IsNullOrEmpty(_person.firstName) || string.IsNullOrEmpty(_person.lastName);
+        }
         private Person _person;
     }
 }

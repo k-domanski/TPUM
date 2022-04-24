@@ -44,9 +44,16 @@ namespace Library.ViewModel
 
         private void CreateLending(IDialogWindow window)
         {
-            Lending newLending = new Lending { bookAuthor = _selectedBook.author, bookID = _selectedBook.id, bookTitle = _selectedBook.title,
-                userID = _selectedUser.id, userName = _selectedUser.firstName, userSurname = _selectedUser.lastName };
-            CloseDialogWithResult(window, newLending);
+            if (selectedBook == null || selectedUser == null)
+            {
+                CloseDialogWithResult(window, null);
+            }
+            else
+            {
+                Lending newLending = new Lending { bookAuthor = _selectedBook.author, bookID = _selectedBook.id, bookTitle = _selectedBook.title,
+                    userID = _selectedUser.id, userName = _selectedUser.firstName, userSurname = _selectedUser.lastName };
+                CloseDialogWithResult(window, newLending);
+            }
         }
 
         private ModelLayer _modelLayer;
