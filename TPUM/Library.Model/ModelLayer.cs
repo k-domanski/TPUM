@@ -158,7 +158,15 @@ namespace Library.Model
 
         internal static Book ToBook(BookInfo bookInfo)
         {
-            return new Book { id = bookInfo.id, author = bookInfo.author, title = bookInfo.title, isbn = bookInfo.isbn };
+            return new Book
+            {
+                id = bookInfo.id,
+                author = bookInfo.author,
+                title = bookInfo.title,
+                isbn = bookInfo.isbn,
+                isAvailable = bookInfo.isAvailable,
+                availability = bookInfo.isAvailable ? "Dostępna" : "Wypożyczona"
+            };
         }
 
         internal static BookInfo ToBookInfo(Book book)
