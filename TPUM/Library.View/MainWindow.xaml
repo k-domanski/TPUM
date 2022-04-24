@@ -18,99 +18,99 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding books}" Margin="5" Background="MediumAquamarine">
+        <ListBox ItemsSource="{Binding books}" SelectedItem="{Binding currentBook}" Margin="5" Background="MediumAquamarine">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10,10,10,0" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton GroupName="Books" VerticalContentAlignment="Center">
-                                <WrapPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding title}"/>
-                                            <Label Content="{Binding author}"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding isbn}"/>
-                                            <Label Content="{Binding count}"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <Menu VerticalAlignment="Center">
-                                        <MenuItem Header="..." VerticalAlignment="Center">
-                                            <MenuItem Header="Info"/>
-                                            <MenuItem Header="Edit"/>
-                                        </MenuItem>
-                                    </Menu>
-                                </WrapPanel>
-                            </RadioButton>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding title}"/>
+                                    <Label Content="{Binding author}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding isbn}"/>
+                                    <Label Content="{Binding count}"/>
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="1" Margin="5" Command="{Binding createNewBookCommand}">DODAJ KSIĄŻKĘ</Button>
-        <ListBox Grid.Column="1" ItemsSource="{Binding people}" Margin="5" Background="LightCyan">
+        <Grid Grid.Row="1">
+            <StackPanel Margin="10,10,10,0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding currentBook.title}"/>
+                    <Label Content="{Binding currentBook.author}"/>
+                </StackPanel>
+                <Label Content="{Binding currentBook.isbn}"/>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="2" Margin="5" Command="{Binding createNewBookCommand}">DODAJ KSIĄŻKĘ</Button>
+        <ListBox Grid.Column="1" ItemsSource="{Binding people}" SelectedItem="{Binding currentUser}" Margin="5" Background="LightCyan">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10,10,10,0" Orientation="Vertical">
-                        <RadioButton GroupName="Users" VerticalContentAlignment="Center">
-                            <WrapPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding firstName}"/>
-                                        <Label Content="{Binding lastName}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding id}"/>
-                                    </StackPanel>
-                                </StackPanel>
-                                <Menu VerticalAlignment="Center">
-                                    <MenuItem Header="..." VerticalAlignment="Center">
-                                        <MenuItem Header="Info"/>
-                                        <MenuItem Header="Edit"/>
-                                    </MenuItem>
-                                </Menu>
-                            </WrapPanel>
-                        </RadioButton>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding firstName}"/>
+                                <Label Content="{Binding lastName}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding id}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Column="1" Grid.Row="1" Margin="5" Command="{Binding createNewUserCommand}">DODAJ UŻYTKOWNIKA</Button>
+        <Grid Margin="5,5,5,0" Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding currentUser.firstName}"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding currentUser.lastName}"/>
+            </Grid>
+            <Label Grid.Row="1" HorizontalContentAlignment="Center" Content="{Binding currentUser.id}"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0">Edytuj</Button>
+                <Button Grid.Column="1">Generuj ID</Button>
+            </Grid>
+        </Grid>
+        <Button Grid.Column="1" Grid.Row="2" Margin="5" Command="{Binding createNewUserCommand}">DODAJ UŻYTKOWNIKA</Button>
         <ListBox Grid.Column="2" ItemsSource="{Binding lendings}" Margin="5" Background="LightSalmon">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10,10,10,0" Orientation="Vertical">
-                        <!--<Border Margin="-10,-10,-10,0" BorderBrush="Black" BorderThickness="1">-->
-                            <RadioButton GroupName="Lendings" VerticalContentAlignment="Center">
-                                <WrapPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <!--<Label Content="{Binding userID}"/>-->
-                                            <Label Content="{Binding userName}"/>
-                                            <Label Content="{Binding userSurname}"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <!--<Label Content="{Binding bookID}"/>-->
-                                            <Label Content="{Binding bookTitle}"/>
-                                            <Label Content="{Binding bookAuthor}"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <Menu VerticalAlignment="Center">
-                                        <MenuItem Header="..." VerticalAlignment="Center">
-                                            <MenuItem Header="Info"/>
-                                            <MenuItem Header="Edit"/>
-                                        </MenuItem>
-                                    </Menu>
-                                </WrapPanel>
-                            </RadioButton>
-                        <!--</Border>-->
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding userName}"/>
+                                <Label Content="{Binding userSurname}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding bookTitle}"/>
+                                <Label Content="{Binding bookAuthor}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Column="2" Grid.Row="1" Margin="5">DODAJ WYPOŻYCZENIE</Button>
+        <Button Grid.Column="2" Grid.Row="2" Margin="5">DODAJ WYPOŻYCZENIE</Button>
     </Grid>
 </Window>

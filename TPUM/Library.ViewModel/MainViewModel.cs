@@ -37,7 +37,35 @@ namespace Library.ViewModel
             get => _modelLayer.lendings;
         }
 
+        public Book currentBook
+        {
+            get => _currentBook;
+            set
+            {
+                _currentBook = value;
+                RaisePropertyChanged();
+            }
+        }
 
+        public Person currentUser
+        {
+            get => _currentUser;
+            set
+            {
+                _currentUser = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Lending currentLending
+        {
+            get => _currentLending;
+            set
+            {
+                _currentLending = value;
+                RaisePropertyChanged();
+            }
+        }
         public Lazy<IWindow> PersonWindow { get; set; }
         public void HandleCreateBook()
         {
@@ -55,6 +83,9 @@ namespace Library.ViewModel
         #region Private
 
         private ModelLayer _modelLayer;
+        private Book _currentBook;
+        private Person _currentUser;
+        private Lending _currentLending;
         #endregion
     }
 }
