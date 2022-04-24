@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AlertDialogViewModel.cs" />
     <Compile Include="CreateBookDialogViewModel.cs" />
+    <Compile Include="CreateUserDialogViewModel.cs" />
     <Compile Include="DialogViewModelBase.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="IDialogWindow.cs" />

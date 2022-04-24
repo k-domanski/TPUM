@@ -6,10 +6,13 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type vm:AlertDialogViewModel}">
-            <local:AlertDialogView></local:AlertDialogView>
+            <local:AlertDialogView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:CreateBookDialogViewModel}">
-            <local:CreateBookDialogWindow></local:CreateBookDialogWindow>
+            <local:CreateBookDialogWindow/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateUserDialogViewModel}">
+            <local:CreateUserDialogWindow/>
         </DataTemplate>
     </Application.Resources>
 </Application>

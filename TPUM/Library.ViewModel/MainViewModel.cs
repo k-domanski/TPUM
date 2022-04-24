@@ -16,8 +16,8 @@ namespace Library.ViewModel
         public ICommand createNewBookCommand { get; set; }
         public ICommand createNewUserCommand { get; set; }
 
-        public IDialogService dialogService { get =>_dialogService; set { _dialogService = value; } }
         public IDialogService createBookService { get =>_createBookService; set { _createBookService = value; } }
+        public IDialogService createUserSercive { get =>_createUserService; set { _createUserService = value; } }
 
         public MainViewModel()
         {
@@ -81,9 +81,10 @@ namespace Library.ViewModel
 
         public void HandleCreateUser()
         {
-            var dialog = new AlertDialogViewModel("Attenction", "This is an alert!");
-            var result = _dialogService.OpenDialog(dialog);
-            string test = result;
+            var dialog = new CreateUserDialogViewModel("Dodaj", "Dodaj nowego użytkownika.");
+            var result = _createUserService.OpenDialog(dialog);
+
+            //TODO:: Create user _modelLayer.CreateUser(result);
         }
 
         public void HandleShowOnlyAvailable(object obj)
@@ -96,8 +97,8 @@ namespace Library.ViewModel
         private Book _currentBook;
         private Person _currentUser;
         private Lending _currentLending;
-        private IDialogService _dialogService;
         private IDialogService _createBookService;
+        private IDialogService _createUserService;
         #endregion
     }
 }
