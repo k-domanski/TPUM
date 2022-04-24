@@ -12,6 +12,7 @@ namespace Library.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        public ICommand showOnlyAvailableCommand { get; set; }
         public ICommand createNewBookCommand { get; set; }
         public ICommand createNewUserCommand { get; set; }
 
@@ -21,7 +22,7 @@ namespace Library.ViewModel
             _modelLayer = ModelLayer.CreateDefault();
             createNewBookCommand = new ViewAction(HandleCreateBook);
             createNewUserCommand = new ViewAction(HandleCreateUser);
-
+            showOnlyAvailableCommand = new ViewAction(HandleShowOnlyAvailable, null);
         }
         public ObservableCollection<Book> books
         {
@@ -69,9 +70,7 @@ namespace Library.ViewModel
         //public Lazy<IWindow> PersonWindow { get; set; }
         public void HandleCreateBook()
         {
-            //TODO: Should open the book creation window instead
-
-            
+            //TODO: Should open the filteredBooks creation window instead
             _modelLayer.CreateBook(new Book{author = "Ala", title = "Ma Kota", isbn = "9870-234-456-234"});
         }
 
@@ -85,6 +84,11 @@ namespace Library.ViewModel
             Console.WriteLine("KAEFSDJKLFKSLADKFLASDKF");
             //IWindow child = PersonWindow.Value;
             //child.Show();
+        }
+
+        public void HandleShowOnlyAvailable(object obj)
+        {
+            _modelLayer.ShouldApplyOnlyAvailableFilter((bool)obj);
         }
         #region Private
 

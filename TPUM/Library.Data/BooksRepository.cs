@@ -13,6 +13,7 @@ namespace Library.Data
         public event Action<IBook> onBookRemoved;
 
         private List<IBook> _books;
+        private readonly object _dataLock = new object();
 
         public BooksRepository()
         {
@@ -22,34 +23,46 @@ namespace Library.Data
 
         public List<IBook> GetBooks()
         {
-            return _books;
+            lock (_dataLock)
+            {
+                return new List<IBook>(_books);
+            }
         }
 
         public bool AddBook(IBook book)
         {
-            if (_books.Contains(book))
+            lock (_dataLock)
             {
-                return false;
+                if (_books.Contains(book))
+                {
+                    return false;
+                }
+                _books.Add(book);
+                onBookAdded?.Invoke(book);
+                return true;
             }
-            _books.Add(book);
-            onBookAdded?.Invoke(book);
-            return true;
         }
 
         public bool RemoveBook(IBook book)
         {
-            if (_books.Remove(book))
+            lock (_dataLock)
             {
-                onBookRemoved?.Invoke(book);
-                return true;
-            }
+                if (_books.Remove(book))
+                {
+                    onBookRemoved?.Invoke(book);
+                    return true;
+                }
 
-            return false;
+                return false;
+            }
         }
 
         public List<IBook> FindBooksByPredicate(Predicate<IBook> predicate)
         {
-            return _books.FindAll(predicate);
+            lock (_dataLock)
+            {
+                return _books.FindAll(predicate);
+            }
         }
     }
 }
