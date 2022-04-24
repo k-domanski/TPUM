@@ -32,6 +32,7 @@ namespace Library.View
             base.OnInitialized(e);
             MainViewModel _vm = (MainViewModel)DataContext;
             _vm.dialogService = new DialogService();
+            _vm.createBookService = new DialogService();
         }
 
         //protected override void OnActivated(EventArgs e)

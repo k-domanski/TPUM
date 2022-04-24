@@ -17,6 +17,8 @@ namespace Library.ViewModel
         public ICommand createNewUserCommand { get; set; }
 
         public IDialogService dialogService { get =>_dialogService; set { _dialogService = value; } }
+        public IDialogService createBookService { get =>_createBookService; set { _createBookService = value; } }
+
         public MainViewModel()
         {
             _modelLayer = ModelLayer.CreateDefault();
@@ -67,11 +69,14 @@ namespace Library.ViewModel
                 RaisePropertyChanged();
             }
         }
-        //public Lazy<IWindow> PersonWindow { get; set; }
+
         public void HandleCreateBook()
         {
             //TODO: Should open the filteredBooks creation window instead
-            _modelLayer.CreateBook(new Book{author = "Ala", title = "Ma Kota", isbn = "9870-234-456-234"});
+            var dialog = new CreateBookDialogViewModel("Dodaj", "Dodaj nową książkę.");
+            var result = _createBookService.OpenDialog(dialog);
+
+            _modelLayer.CreateBook(result);
         }
 
         public void HandleCreateUser()
@@ -79,11 +84,6 @@ namespace Library.ViewModel
             var dialog = new AlertDialogViewModel("Attenction", "This is an alert!");
             var result = _dialogService.OpenDialog(dialog);
             string test = result;
-            var dialog1 = new AlertDialogViewModel(test, "This is an alert!");
-            var result1 = _dialogService.OpenDialog(dialog1);
-            Console.WriteLine("KAEFSDJKLFKSLADKFLASDKF");
-            //IWindow child = PersonWindow.Value;
-            //child.Show();
         }
 
         public void HandleShowOnlyAvailable(object obj)
@@ -97,6 +97,7 @@ namespace Library.ViewModel
         private Person _currentUser;
         private Lending _currentLending;
         private IDialogService _dialogService;
+        private IDialogService _createBookService;
         #endregion
     }
 }

@@ -8,5 +8,8 @@
         <DataTemplate DataType="{x:Type vm:AlertDialogViewModel}">
             <local:AlertDialogView></local:AlertDialogView>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateBookDialogViewModel}">
+            <local:CreateBookDialogWindow></local:CreateBookDialogWindow>
+        </DataTemplate>
     </Application.Resources>
 </Application>

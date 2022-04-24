@@ -12,16 +12,20 @@ namespace Library.ViewModel
     {
         public ICommand createBookCommand { get; private set; }
 
-        public Book newBook { get; set; }
+        public Book book { get => _book; set { _book = value; } }
 
         public CreateBookDialogViewModel(string title, string message) : base(title, message)
         {
+            _book = new Book();
             createBookCommand = new RelayCommand<IDialogWindow>(CreateBook);
         }
 
         private void CreateBook(IDialogWindow window)
         {
-            CloseDialogWithResult(window, newBook);
+            _book.id = Guid.NewGuid();
+            CloseDialogWithResult(window, _book);
         }
+
+        private Book _book;
     }
 }

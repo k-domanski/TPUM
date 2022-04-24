@@ -7,6 +7,23 @@
              mc:Ignorable="d" 
              Height="300" d:DesignWidth="300">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding Message}" HorizontalAlignment="Center" FontSize="16"/>
+        <TextBlock Grid.Row="1" Text="Autor" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"/>
+        <TextBox Grid.Row="2" Text="{Binding book.author}"/>
+        <TextBlock Grid.Row="3" Text="Tytuł" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"/>
+        <TextBox Grid.Row="4" Text="{Binding book.title}"/>
+        <TextBlock Grid.Row="5" Text="ISBN" HorizontalAlignment="Center" FontSize="16"/>
+        <TextBox Grid.Row="6" Text="{Binding book.isbn}"/>
+        <Button Grid.Row="7" Content="Dodaj" Command="{Binding createBookCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
     </Grid>
 </UserControl>
