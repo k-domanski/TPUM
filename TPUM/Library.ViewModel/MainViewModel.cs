@@ -17,7 +17,7 @@ namespace Library.ViewModel
         public ICommand createNewUserCommand { get; set; }
         public ICommand createNewLendingCommand { get; set; }
 
-        public IDialogService dialogService { get =>_dialogService; set { _dialogService = value; } }
+        public IDialogService dialogService { get => _dialogService; set { _dialogService = value; } }
 
         public MainViewModel()
         {
@@ -28,7 +28,7 @@ namespace Library.ViewModel
             showOnlyAvailableCommand = new RelayCommand<object>(HandleShowOnlyAvailable);
         }
 
-        
+
 
         public ObservableCollection<Book> books
         {
@@ -88,7 +88,7 @@ namespace Library.ViewModel
             var dialog = new CreateUserDialogViewModel("Dodaj", "Dodaj nowego użytkownika.");
             var result = _dialogService.OpenDialog(dialog);
 
-            //TODO:: Create filteredUsers _modelLayer.CreateUser(result);
+            _modelLayer.CreateUser(result);
         }
 
         public void HandleCreateLending()
@@ -96,7 +96,12 @@ namespace Library.ViewModel
             var dialog = new CreateLendingDialogViewModel(_modelLayer.CreateCopy(), "Dodaj", "Dodaj nowe wypożyczenie.");
             var result = _dialogService.OpenDialog(dialog);
 
-            //TODO:: Add new lending?
+            if (!_modelLayer.CanCreateLending(result))
+            {
+                _dialogService.OpenDialog(new AlertDialogViewModel("Niepowodzenie", "Nie można utwożyć wypożyczenia!"));
+                return;
+            }
+            _modelLayer.CreateLending(result);
         }
 
         public void HandleShowOnlyAvailable(object obj)
