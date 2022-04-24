@@ -22,14 +22,20 @@ namespace Library.Logic
         public Simulation(ILibrary library, float interval)
         {
             this.library = library;
-            actions = new List<Func<Random, bool>> { LendBookAction, ReturnBookAction };
+            actions = new List<Func<Random, bool>> {LendBookAction, ReturnBookAction};
 
             timer = new Timer(interval * 1000);
             timer.Elapsed += ProgressSimulation;
             timer.AutoReset = true;
         }
 
-        public void Start()
+        ~Simulation()
+        {
+            Stop();
+            timer.Dispose();
+        }
+
+    public void Start()
         {
             timer.Start();
         }
