@@ -22,7 +22,7 @@ namespace Library.ViewModel
             _modelLayer = ModelLayer.CreateDefault();
             createNewBookCommand = new ViewAction(HandleCreateBook);
             createNewUserCommand = new ViewAction(HandleCreateUser);
-            showOnlyAvailableCommand = new ViewAction(HandleShowOnlyAvailable, null);
+            showOnlyAvailableCommand = new RelayCommand<object>(HandleShowOnlyAvailable);
         }
         public ObservableCollection<Book> books
         {
