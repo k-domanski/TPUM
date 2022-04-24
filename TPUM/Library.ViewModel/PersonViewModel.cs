@@ -13,8 +13,8 @@ namespace Library.ViewModel
     {
         public PersonViewModel()
         {
-            createNewUserCommand = new ViewAction((obj) => CreateUser(), null);
-            generateUserIDCommand = new ViewAction((obj) => GenerateUserID(), null);
+            //createNewUserCommand = new ViewAction((obj) => CreateUser(), null);
+            //generateUserIDCommand = new ViewAction((obj) => GenerateUserID(), null);
         }
 
         public string firstName { get => _firstName; set { _firstName = value; RaisePropertyChanged(); } }

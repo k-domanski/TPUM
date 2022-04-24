@@ -50,7 +50,7 @@ namespace Library.Logic
         {
             AddInitialLibraryData();
             simulation = new Simulation(this, 2.0f);
-            simulation.Start();
+            //simulation.Start();
 
         }
 

@@ -3,32 +3,44 @@ using System.Windows.Input;
 
 namespace Library.ViewModel
 {
-    public class ViewAction : ICommand
+    public class RelayCommand<T> : ICommand
     {
-        private Action<object> _execute;
-        private Func<object, bool> _canExecute;
-
-        public ViewAction(Action<object> execute, Func<object, bool> canExecute)
-        {
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            if (_execute == null)
-            {
-                return false;
-            }
-
-            return _canExecute == null || _canExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            _execute(parameter);
-        }
+        private readonly Action<T> _execute = null;
+        private readonly Func<T, bool> _canExecute = null;
 
         public event EventHandler CanExecuteChanged;
+
+        public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
+        {
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute ?? (_ => true);
+        }
+
+        public bool CanExecute(object parameter) => _canExecute((T)parameter);
+
+        public void Execute(object parameter) => _execute((T)parameter);
+    }
+
+    public class ViewAction : RelayCommand<object>
+    {
+
+        public ViewAction(Action execute, Func<bool> canExecute) : base(_ => execute(), _ => canExecute()) { }
+        public ViewAction(Action execute) : base(_ => execute()) { }
+        //public bool CanExecute(object parameter)
+        //{
+        //    if (_execute == null)
+        //    {
+        //        return false;
+        //    }
+        //
+        //    return _canExecute == null || _canExecute(parameter);
+        //}
+        //
+        //public void Execute(object parameter)
+        //{
+        //    _execute(parameter);
+        //}
+        //
+        //public event EventHandler CanExecuteChanged;
     }
 }

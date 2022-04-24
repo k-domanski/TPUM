@@ -15,12 +15,12 @@ namespace Library.ViewModel
         public ICommand createNewBookCommand { get; set; }
         public ICommand createNewUserCommand { get; set; }
 
+        public IDialogService dialogService { get =>_dialogService; set { _dialogService = value; } }
         public MainViewModel()
         {
             _modelLayer = ModelLayer.CreateDefault();
-
-            createNewBookCommand = new ViewAction((obj) => HandleCreateBook(), null);
-            createNewUserCommand = new ViewAction((obj) => HandleCreateUser(), null);
+            createNewBookCommand = new ViewAction(HandleCreateBook);
+            createNewUserCommand = new ViewAction(HandleCreateUser);
 
         }
         public ObservableCollection<Book> books
@@ -66,7 +66,7 @@ namespace Library.ViewModel
                 RaisePropertyChanged();
             }
         }
-        public Lazy<IWindow> PersonWindow { get; set; }
+        //public Lazy<IWindow> PersonWindow { get; set; }
         public void HandleCreateBook()
         {
             //TODO: Should open the book creation window instead
@@ -77,8 +77,14 @@ namespace Library.ViewModel
 
         public void HandleCreateUser()
         {
-            IWindow child = PersonWindow.Value;
-            child.Show();
+            var dialog = new AlertDialogViewModel("Attenction", "This is an alert!");
+            var result = _dialogService.OpenDialog(dialog);
+            string test = result;
+            var dialog1 = new AlertDialogViewModel(test, "This is an alert!");
+            var result1 = _dialogService.OpenDialog(dialog1);
+            Console.WriteLine("KAEFSDJKLFKSLADKFLASDKF");
+            //IWindow child = PersonWindow.Value;
+            //child.Show();
         }
         #region Private
 
@@ -86,6 +92,7 @@ namespace Library.ViewModel
         private Book _currentBook;
         private Person _currentUser;
         private Lending _currentLending;
+        private IDialogService _dialogService;
         #endregion
     }
 }
