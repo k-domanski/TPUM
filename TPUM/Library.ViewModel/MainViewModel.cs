@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Library.Model;
-using System.Windows;
 
 namespace Library.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public ICommand showOnlyAvailableCommand { get; set; }
-        public ICommand createNewBookCommand { get; set; }
-        public ICommand createNewUserCommand { get; set; }
-        public ICommand createNewLendingCommand { get; set; }
+        public ICommand showOnlyAvailableCommand { get; private set; }
+        public ICommand createNewBookCommand { get; private set; }
+        public ICommand createNewUserCommand { get; private set; }
+        public ICommand createNewLendingCommand { get; private set; }
 
         public IDialogService dialogService { get => _dialogService; set { _dialogService = value; } }
 
@@ -43,14 +37,14 @@ namespace Library.ViewModel
             get => _modelLayer.lendings;
         }
 
-        public void HandleCreateBook()
+        private void HandleCreateBook()
         {
             var dialog = new CreateBookDialogViewModel("Dodaj", "Dodaj nową książkę.");
             var result = _dialogService.OpenDialog(dialog);
             _modelLayer.CreateBook(result);
         }
 
-        public void HandleCreateUser()
+        private void HandleCreateUser()
         {
             var dialog = new CreateUserDialogViewModel("Dodaj", "Dodaj nowego użytkownika.");
             var result = _dialogService.OpenDialog(dialog);
@@ -58,7 +52,7 @@ namespace Library.ViewModel
             _modelLayer.CreateUser(result);
         }
 
-        public void HandleCreateLending()
+        private void HandleCreateLending()
         {
             var dialog = new CreateLendingDialogViewModel(_modelLayer.CreateCopy(), "Dodaj", "Dodaj nowe wypożyczenie.");
             var result = _dialogService.OpenDialog(dialog);
@@ -71,7 +65,7 @@ namespace Library.ViewModel
             _modelLayer.CreateLending(result);
         }
 
-        public void HandleShowOnlyAvailable(object obj)
+        private void HandleShowOnlyAvailable(object obj)
         {
             _modelLayer.ShouldApplyOnlyAvailableFilter((bool)obj);
         }

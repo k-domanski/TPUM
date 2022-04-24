@@ -23,24 +23,7 @@ namespace Library.ViewModel
 
     public class ViewAction : RelayCommand<object>
     {
-
         public ViewAction(Action execute, Func<bool> canExecute) : base(_ => execute(), _ => canExecute()) { }
         public ViewAction(Action execute) : base(_ => execute()) { }
-        //public bool CanExecute(object parameter)
-        //{
-        //    if (_execute == null)
-        //    {
-        //        return false;
-        //    }
-        //
-        //    return _canExecute == null || _canExecute(parameter);
-        //}
-        //
-        //public void Execute(object parameter)
-        //{
-        //    _execute(parameter);
-        //}
-        //
-        //public event EventHandler CanExecuteChanged;
     }
 }

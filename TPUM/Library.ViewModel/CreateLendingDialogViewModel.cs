@@ -1,10 +1,5 @@
 ﻿using Library.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Library.ViewModel
@@ -25,6 +20,7 @@ namespace Library.ViewModel
                 RaisePropertyChanged();
             }
         }
+
         public Book selectedBook
         {
             get => _selectedBook;

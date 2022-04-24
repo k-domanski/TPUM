@@ -49,9 +49,7 @@
     <Compile Include="DialogViewModelBase.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="IDialogWindow.cs" />
-    <Compile Include="IWindow.cs" />
     <Compile Include="MainViewModel.cs" />
-    <Compile Include="PersonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewAction.cs" />
     <Compile Include="ViewModelBase.cs" />

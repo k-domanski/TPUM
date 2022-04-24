@@ -1,16 +1,10 @@
 ﻿using Library.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Library.ViewModel
 {
     public class CreateUserDialogViewModel : DialogViewModelBase<Person>
     {
-
         public ICommand createUserCommand { get; private set; }
 
         public Person person
@@ -44,6 +38,7 @@ namespace Library.ViewModel
         {
             return string.IsNullOrEmpty(_person.firstName) || string.IsNullOrEmpty(_person.lastName);
         }
+
         private Person _person;
     }
 }
