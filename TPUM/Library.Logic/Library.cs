@@ -25,6 +25,8 @@ namespace Library.Logic
 
         public IFilter<BookInfo> bookAvailableFilter { get; }
 
+        public bool isInitialized { get; private set; } = false;
+
         private Simulation simulation;
 
         public Library(ILibraryDataLayer dataLayer)
@@ -48,10 +50,16 @@ namespace Library.Logic
 
         public void Initialize()
         {
+            if (isInitialized)
+            {
+                return;
+            }
+
             AddInitialLibraryData();
             simulation = new Simulation(this, 2.0f);
             //simulation.Start();
 
+            isInitialized = true;
         }
 
         public IBooksManager GetBooksManager()
@@ -67,6 +75,17 @@ namespace Library.Logic
         public ILendingsManager GetLendingsManager()
         {
             return lendingsManager;
+        }
+
+        public bool CanLendBook(Guid bookID)
+        {
+            List<BookInfo> books = booksManager.GetBooks(new BookIDFilter(bookID));
+            if (books.Count != 1)
+            {
+                return false;
+            }
+
+            return books[0].isAvailable;
         }
 
         public bool LendBook(Guid bookID, Guid personID)

@@ -23,7 +23,16 @@ namespace Library.Model
             return new ModelLayer(Logic.Library.CreateDefault());
         }
 
-        public ILibrary library { get; }
+        public ModelLayer CreateCopy()
+        {
+            ModelLayer model = new ModelLayer(library);
+            model.books = new ObservableCollection<Book>(library.GetBooksManager().GetBooks(new PassFilter<BookInfo>()).ConvertAll(ModelLayer.ToBook));
+            model.users = new ObservableCollection<Person>(library.GetPersonsManager().GetPersons(new PassFilter<PersonInfo>()).ConvertAll(ModelLayer.ToPerson));
+            model.lendings = new ObservableCollection<Lending>(library.GetLendingsManager().GetLendings(new PassFilter<LendingInfo>()).ConvertAll(ModelLayer.ToLending));
+            return model;
+        }
+
+        private ILibrary library { get; }
         public ModelLayer(ILibrary library)
         {
             this.library = library;
