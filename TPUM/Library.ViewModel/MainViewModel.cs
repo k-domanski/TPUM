@@ -84,7 +84,7 @@ namespace Library.ViewModel
             var dialog = new CreateUserDialogViewModel("Dodaj", "Dodaj nowego użytkownika.");
             var result = _createUserService.OpenDialog(dialog);
 
-            //TODO:: Create user _modelLayer.CreateUser(result);
+            //TODO:: Create filteredUsers _modelLayer.CreateUser(result);
         }
 
         public void HandleShowOnlyAvailable(object obj)
