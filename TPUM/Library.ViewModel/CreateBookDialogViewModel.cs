@@ -22,7 +22,21 @@ namespace Library.ViewModel
 
         private void CreateBook(IDialogWindow window)
         {
-            CloseDialogWithResult(window, _book);
+            if (IsBookNotValid())
+            {
+                CloseDialogWithResult(window, null);
+            }
+            else
+            {
+                CloseDialogWithResult(window, _book);
+            }
+        }
+
+        private bool IsBookNotValid()
+        {
+            return string.IsNullOrEmpty(_book.title)
+                || string.IsNullOrEmpty(_book.author)
+                || string.IsNullOrEmpty(_book.isbn);
         }
 
         private Book _book;

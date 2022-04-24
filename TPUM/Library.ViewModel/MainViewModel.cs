@@ -47,8 +47,8 @@ namespace Library.ViewModel
         {
             var dialog = new CreateBookDialogViewModel("Dodaj", "Dodaj nową książkę.");
             var result = _dialogService.OpenDialog(dialog);
-
-            _modelLayer.CreateBook(result);
+            if(result != null )
+                _modelLayer.CreateBook(result);
         }
 
         public void HandleCreateUser()
