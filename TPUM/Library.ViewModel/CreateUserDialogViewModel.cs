@@ -12,7 +12,6 @@ namespace Library.ViewModel
     {
 
         public ICommand createUserCommand { get; private set; }
-        public ICommand generateUserIDCommand { get; private set; }
 
         public Person person
         {
@@ -23,37 +22,17 @@ namespace Library.ViewModel
             }
         }
 
-        public Guid id 
-        {
-            get => _id;
-            set
-            {
-                _id = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public CreateUserDialogViewModel(string title, string message) : base(title, message)
         {
             _person = new Person();
             createUserCommand = new RelayCommand<IDialogWindow>(CreateUser);
-            generateUserIDCommand = new ViewAction(GenerateUserID);
         }
 
         private void CreateUser(IDialogWindow window)
         {
-            _person.id = _id;
             CloseDialogWithResult(window, _person);
         }
 
-        private void GenerateUserID()
-        {
-            id = Guid.NewGuid();
-        }
-
-
         private Person _person;
-        private Guid _id;
-
     }
 }

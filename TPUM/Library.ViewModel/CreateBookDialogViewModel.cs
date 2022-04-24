@@ -22,7 +22,6 @@ namespace Library.ViewModel
 
         private void CreateBook(IDialogWindow window)
         {
-            _book.id = Guid.NewGuid();
             CloseDialogWithResult(window, _book);
         }
 
