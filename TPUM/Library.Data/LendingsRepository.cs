@@ -10,6 +10,7 @@ namespace Library.Data
         public event Action<ILending> onLendingRemoved;
 
         private List<ILending> _lendings;
+        private readonly object _dataLock = new object();
 
         public LendingsRepository()
         {
@@ -19,35 +20,47 @@ namespace Library.Data
 
         public List<ILending> GetLendings()
         {
-            return _lendings;
+            lock (_dataLock)
+            {
+                return new List<ILending>(_lendings);
+            }
         }
 
         public bool AddLending(ILending lending)
         {
-            if (_lendings.Contains(lending))
+            lock (_dataLock)
             {
-                return false;
-            }
+                if (_lendings.Contains(lending))
+                {
+                    return false;
+                }
 
-            _lendings.Add(lending);
-            onLendingAdded?.Invoke(lending);
-            return true;
+                _lendings.Add(lending);
+                onLendingAdded?.Invoke(lending);
+                return true;
+            }
         }
 
         public bool RemoveLending(ILending lending)
         {
-            if (_lendings.Remove(lending))
+            lock (_dataLock)
             {
-                onLendingRemoved?.Invoke(lending);
-                return true;
-            }
+                if (_lendings.Remove(lending))
+                {
+                    onLendingRemoved?.Invoke(lending);
+                    return true;
+                }
 
-            return false;
+                return false;
+            }
         }
 
         public List<ILending> FindLendingsByPredicate(Predicate<ILending> predicate)
         {
-            return _lendings.FindAll(predicate);
+            lock (_dataLock)
+            {
+                return _lendings.FindAll(predicate);
+            }
         }
     }
 }

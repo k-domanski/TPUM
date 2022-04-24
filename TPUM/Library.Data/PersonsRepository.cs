@@ -9,42 +9,54 @@ namespace Library.Data
         public event Action<IPerson> onPersonAdded;
         public event Action<IPerson> onPersonRemoved;
         private List<IPerson> _persons;
+        private readonly object _dataLock = new object();
 
         public PersonsRepository()
         {
             _persons = new List<IPerson>();
         }
 
-
         public List<IPerson> GetPersons()
         {
-            return _persons;
+            lock (_dataLock)
+            {
+                return new List<IPerson>(_persons);
+            }
         }
 
         public bool AddPerson(IPerson person)
         {
-            if (_persons.Contains(person))
+            lock (_dataLock)
             {
-                return false;
+                if (_persons.Contains(person))
+                {
+                    return false;
+                }
+                _persons.Add(person);
+                onPersonAdded?.Invoke(person);
+                return true;
             }
-            _persons.Add(person);
-            onPersonAdded?.Invoke(person);
-            return true;
         }
 
         public bool RemovePerson(IPerson person)
         {
-            if (_persons.Remove(person))
+            lock (_dataLock)
             {
-                onPersonRemoved?.Invoke(person);
-                return true;
+                if (_persons.Remove(person))
+                {
+                    onPersonRemoved?.Invoke(person);
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
 
         public List<IPerson> FindPersonsByPredicate(Predicate<IPerson> predicate)
         {
-            return _persons.FindAll(predicate);
+            lock (_dataLock)
+            {
+                return _persons.FindAll(predicate);
+            }
         }
     }
 }

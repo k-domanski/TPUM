@@ -44,8 +44,6 @@ namespace Library.ViewModel
         public void HandleCreateBook()
         {
             //TODO: Should open the filteredBooks creation window instead
-
-            
             _modelLayer.CreateBook(new Book{author = "Ala", title = "Ma Kota", isbn = "9870-234-456-234"});
         }
 
