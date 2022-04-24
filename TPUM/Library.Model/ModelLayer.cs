@@ -153,7 +153,42 @@ namespace Library.Model
 
         public void CreateBook(Book book)
         {
+            if (book == null)
+            {
+                return;
+            }
+
             library.GetBooksManager().CreateBook(ToBookInfo(book));
+        }
+
+        public void CreateUser(Person user)
+        {
+            if (user == null)
+            {
+                return;
+            }
+
+            library.GetPersonsManager().CreatePerson(ToPersonInfo(user));
+        }
+
+        public bool CanCreateLending(Lending lending)
+        {
+            if (lending == null)
+            {
+                return false;
+            }
+
+            return library.CanLendBook(lending.bookID);
+        }
+
+        public void CreateLending(Lending lending)
+        {
+            if (lending == null)
+            {
+                return;
+            }
+
+            library.GetLendingsManager().CreateLending(ToLendingInfo(lending));
         }
 
         internal static Book ToBook(BookInfo bookInfo)
@@ -179,9 +214,19 @@ namespace Library.Model
             return new Person { id = personInfo.id, firstName = personInfo.firstName, lastName = personInfo.surname };
         }
 
+        internal static PersonInfo ToPersonInfo(Person person)
+        {
+            return new PersonInfo { firstName = person.firstName, surname = person.lastName };
+        }
+
         internal static Lending ToLending(LendingInfo lendingInfo)
         {
             return new Lending { bookID = lendingInfo.bookID, userID = lendingInfo.personID };
+        }
+
+        internal static LendingInfo ToLendingInfo(Lending lending)
+        {
+            return new LendingInfo { bookID = lending.bookID, personID = lending.userID };
         }
     }
 }
