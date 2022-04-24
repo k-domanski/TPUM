@@ -28,12 +28,11 @@ namespace Library.ViewModel
             showOnlyAvailableCommand = new RelayCommand<object>(HandleShowOnlyAvailable);
         }
 
-
-
         public ObservableCollection<Book> books
         {
             get => _modelLayer.books;
         }
+
         public ObservableCollection<Person> people
         {
             get => _modelLayer.users;
@@ -44,39 +43,8 @@ namespace Library.ViewModel
             get => _modelLayer.lendings;
         }
 
-        public Book currentBook
-        {
-            get => _currentBook;
-            set
-            {
-                _currentBook = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public Person currentUser
-        {
-            get => _currentUser;
-            set
-            {
-                _currentUser = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public Lending currentLending
-        {
-            get => _currentLending;
-            set
-            {
-                _currentLending = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public void HandleCreateBook()
         {
-            //TODO: Should open the filteredBooks creation window instead
             var dialog = new CreateBookDialogViewModel("Dodaj", "Dodaj nową książkę.");
             var result = _dialogService.OpenDialog(dialog);
 
@@ -96,7 +64,7 @@ namespace Library.ViewModel
             var dialog = new CreateLendingDialogViewModel(_modelLayer.CreateCopy(), "Dodaj", "Dodaj nowe wypożyczenie.");
             var result = _dialogService.OpenDialog(dialog);
 
-            if (!_modelLayer.CanCreateLending(result))
+            if (result != null && !_modelLayer.CanCreateLending(result))
             {
                 _dialogService.OpenDialog(new AlertDialogViewModel("Niepowodzenie", "Nie można utwożyć wypożyczenia!"));
                 return;
@@ -108,12 +76,9 @@ namespace Library.ViewModel
         {
             _modelLayer.ShouldApplyOnlyAvailableFilter((bool)obj);
         }
-        #region Private
 
+        #region Private
         private ModelLayer _modelLayer;
-        private Book _currentBook;
-        private Person _currentUser;
-        private Lending _currentLending;
         private IDialogService _dialogService;
         #endregion
     }

@@ -31,26 +31,16 @@
                 <DataTemplate>
                     <StackPanel Margin="10,10,10,0" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton GroupName="Books" VerticalContentAlignment="Center">
-                                <WrapPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding title}"/>
-                                            <Label Content="{Binding author}"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding isbn}"/>
-                                            <Label Content="{Binding availability}"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <Menu VerticalAlignment="Center">
-                                        <MenuItem Header="..." VerticalAlignment="Center">
-                                            <MenuItem Header="Info"/>
-                                            <MenuItem Header="Edit"/>
-                                        </MenuItem>
-                                    </Menu>
-                                </WrapPanel>
-                            </RadioButton>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding title}"/>
+                                    <Label Content="{Binding author}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding isbn}"/>
+                                    <Label Content="{Binding availability}"/>
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
@@ -61,25 +51,15 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10,10,10,0" Orientation="Vertical">
-                        <RadioButton GroupName="Users" VerticalContentAlignment="Center">
-                            <WrapPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding firstName}"/>
-                                        <Label Content="{Binding lastName}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding id}"/>
-                                    </StackPanel>
-                                </StackPanel>
-                                <Menu VerticalAlignment="Center">
-                                    <MenuItem Header="..." VerticalAlignment="Center">
-                                        <MenuItem Header="Info"/>
-                                        <MenuItem Header="Edit"/>
-                                    </MenuItem>
-                                </Menu>
-                            </WrapPanel>
-                        </RadioButton>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding firstName}"/>
+                                <Label Content="{Binding lastName}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding id}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -89,30 +69,16 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10,10,10,0" Orientation="Vertical">
-                        <!--<Border Margin="-10,-10,-10,0" BorderBrush="Black" BorderThickness="1">-->
-                            <RadioButton GroupName="Lendings" VerticalContentAlignment="Center">
-                                <WrapPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <!--<Label Content="{Binding userID}"/>-->
-                                            <Label Content="{Binding userName}"/>
-                                            <Label Content="{Binding userSurname}"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <!--<Label Content="{Binding bookID}"/>-->
-                                            <Label Content="{Binding bookTitle}"/>
-                                            <Label Content="{Binding bookAuthor}"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <Menu VerticalAlignment="Center">
-                                        <MenuItem Header="..." VerticalAlignment="Center">
-                                            <MenuItem Header="Info"/>
-                                            <MenuItem Header="Edit"/>
-                                        </MenuItem>
-                                    </Menu>
-                                </WrapPanel>
-                            </RadioButton>
-                        <!--</Border>-->
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding userName}"/>
+                                <Label Content="{Binding userSurname}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding bookTitle}"/>
+                                <Label Content="{Binding bookAuthor}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

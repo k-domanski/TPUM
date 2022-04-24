@@ -14,18 +14,12 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="{Binding Message}" HorizontalAlignment="Center" FontSize="16"/>
         <TextBlock Grid.Row="1" Text="Imię" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"/>
         <TextBox Grid.Row="2" Text="{Binding person.firstName}"/>
         <TextBlock Grid.Row="3" Text="Nazwisko" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"/>
         <TextBox Grid.Row="4" Text="{Binding person.lastName}"/>
-        <TextBlock Grid.Row="5" Text="ID" HorizontalAlignment="Center" FontSize="16"/>
-        <TextBlock Grid.Row="6" Text="{Binding id}" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"/>
-        <Button Grid.Row="7" Content="Generuj ID" Command="{Binding generateUserIDCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
-        <Button Grid.Row="8" Content="Dodaj" Command="{Binding createUserCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        <Button Grid.Row="5" Content="Dodaj" Command="{Binding createUserCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
     </Grid>
 </UserControl>

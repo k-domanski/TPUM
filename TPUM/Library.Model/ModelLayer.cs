@@ -153,11 +153,21 @@ namespace Library.Model
 
         public void CreateBook(Book book)
         {
+            if (book == null)
+            {
+                return;
+            }
+
             library.GetBooksManager().CreateBook(ToBookInfo(book));
         }
 
         public void CreateUser(Person user)
         {
+            if (user == null)
+            {
+                return;
+            }
+
             library.GetPersonsManager().CreatePerson(ToPersonInfo(user));
         }
 
@@ -173,6 +183,11 @@ namespace Library.Model
 
         public void CreateLending(Lending lending)
         {
+            if (lending == null)
+            {
+                return;
+            }
+
             library.GetLendingsManager().CreateLending(ToLendingInfo(lending));
         }
 
