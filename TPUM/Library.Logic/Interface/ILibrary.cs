@@ -19,5 +19,6 @@ namespace Library.Logic
         ILendingsManager GetLendingsManager();
         bool LendBook(Guid bookID, Guid personID);
         bool ReturnBook(LendingInfo lending);
+        bool CanLendBook(Guid bookID);
     }
 }
