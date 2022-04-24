@@ -15,6 +15,7 @@ namespace Library.ViewModel
         public ICommand showOnlyAvailableCommand { get; set; }
         public ICommand createNewBookCommand { get; set; }
         public ICommand createNewUserCommand { get; set; }
+        public ICommand createNewLendingCommand { get; set; }
 
         public IDialogService dialogService { get =>_dialogService; set { _dialogService = value; } }
 
@@ -23,8 +24,12 @@ namespace Library.ViewModel
             _modelLayer = ModelLayer.CreateDefault();
             createNewBookCommand = new ViewAction(HandleCreateBook);
             createNewUserCommand = new ViewAction(HandleCreateUser);
+            createNewLendingCommand = new ViewAction(HandleCreateLending);
             showOnlyAvailableCommand = new RelayCommand<object>(HandleShowOnlyAvailable);
         }
+
+        
+
         public ObservableCollection<Book> books
         {
             get => _modelLayer.books;
@@ -84,6 +89,14 @@ namespace Library.ViewModel
             var result = _dialogService.OpenDialog(dialog);
 
             //TODO:: Create user _modelLayer.CreateUser(result);
+        }
+
+        public void HandleCreateLending()
+        {
+            var dialog = new CreateLendingDialogViewModel(_modelLayer.CreateCopy(), "Dodaj", "Dodaj nowe wypożyczenie.");
+            var result = _dialogService.OpenDialog(dialog);
+
+            //TODO:: Add new lending?
         }
 
         public void HandleShowOnlyAvailable(object obj)

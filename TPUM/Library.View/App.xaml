@@ -14,5 +14,8 @@
         <DataTemplate DataType="{x:Type vm:CreateUserDialogViewModel}">
             <local:CreateUserDialogWindow/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateLendingDialogViewModel}">
+            <local:CreateLendingDialogWindow/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
