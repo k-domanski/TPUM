@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{48CF28F9-1715-4EA8-8E72-4875D49BCA91}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Library.Logic</RootNamespace>
-    <AssemblyName>Library.Logic</AssemblyName>
+    <ProjectGuid>{DD676EC3-7028-42E3-B944-14B456BCF2A2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Library.PresentationServer</RootNamespace>
+    <AssemblyName>Library.PresentationServer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,35 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookInfo.cs" />
-    <Compile Include="BooksManager.cs" />
-    <Compile Include="Factories\BookFactories.cs" />
-    <Compile Include="Factories\LendingsFactories.cs" />
-    <Compile Include="Factories\PersonFactories.cs" />
-    <Compile Include="Filters\BookFilters.cs" />
-    <Compile Include="Filters\CommonFilters.cs" />
-    <Compile Include="Filters\LendingFilters.cs" />
-    <Compile Include="Filters\PersonFilters.cs" />
-    <Compile Include="Interface\ILibrary.cs" />
-    <Compile Include="Interface\IBooksManager.cs" />
-    <Compile Include="Interface\IFilter.cs" />
-    <Compile Include="Interface\ILendingsManager.cs" />
-    <Compile Include="Interface\IPersonsManager.cs" />
-    <Compile Include="LendingInfo.cs" />
-    <Compile Include="LendingsManager.cs" />
-    <Compile Include="Library.cs" />
-    <Compile Include="PersonInfo.cs" />
-    <Compile Include="PersonsManager.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Simulation.cs" />
     <Compile Include="WebSocket\Extensions.cs" />
-    <Compile Include="WebSocket\WebSocketClient.cs" />
     <Compile Include="WebSocket\WebSocketConnection.cs" />
+    <Compile Include="WebSocket\WebSocketServer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Library.Data\Library.Data.csproj">
-      <Project>{a719ad13-4d0e-4f30-b43b-12b9ec15db52}</Project>
-      <Name>Library.Data</Name>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library.LogicServer\Library.LogicServer.csproj">
+      <Project>{4b2b1a2b-8292-485f-bd22-7ed3608827a0}</Project>
+      <Name>Library.LogicServer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
