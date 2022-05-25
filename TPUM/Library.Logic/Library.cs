@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Library.Data;
 using Library.Data.Interface;
 using Library.Logic.Filters;
@@ -26,6 +27,7 @@ namespace Library.Logic
         public bool isInitialized { get; private set; } = false;
 
         private Simulation simulation;
+        private WebSocketConnection connection = null;
 
         public Library(ILibraryDataLayer dataLayer)
         {
@@ -94,6 +96,27 @@ namespace Library.Logic
         public bool ReturnBook(LendingInfo lending)
         {
             return lendingsManager.RemoveLending(lending);
+        }
+
+        public async Task Connect(Uri uri)
+        {
+            try
+            {
+                connection = await WebSocketClient.Connect(uri, log => { });
+                if (connection != null)
+                {
+                    connection.onMessage = ConnectionMessageHandler;
+                }
+            }
+            catch
+            {
+                connection = null;
+            }
+        }
+
+        void ConnectionMessageHandler(string message)
+        {
+
         }
 
         public static ILibrary CreateDefault()

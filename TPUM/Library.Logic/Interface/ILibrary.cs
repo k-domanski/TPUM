@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Library.Logic.Interface;
 
 namespace Library.Logic
@@ -20,5 +21,6 @@ namespace Library.Logic
         bool LendBook(Guid bookID, Guid personID);
         bool ReturnBook(LendingInfo lending);
         bool CanLendBook(Guid bookID);
+        Task Connect(Uri uri);
     }
 }

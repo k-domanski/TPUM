@@ -32,7 +32,7 @@ namespace Library.Logic
                 _clientWebSocket = clientWebSocket;
                 _peer = peer;
                 _log = log;
-                Task.Factory.StartNew(() => ClientMessageLoop());
+                Task.Factory.StartNew(ClientMessageLoop);
             }
 
             protected override Task SendTask(string message)
