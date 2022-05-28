@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Library.Logic;
 using Library.Logic.Filters;
@@ -42,17 +43,24 @@ namespace Library.Model
             library.onPersonRemoved += HandlePersonRemoved;
             library.onLendingRemoved += HandleLendingRemoved;
 
+            library.onConnectionMessage += HandleConnectionMessage;
+
             books = new ObservableCollection<Book>();
             users = new ObservableCollection<Person>();
             lendings = new ObservableCollection<Lending>();
             messages = new ObservableCollection<Message>();
 
             //Test Messages
-            messages.Add (new Message {message = "Message 1" });
-            messages.Add (new Message {message = "Message 2" });
-            messages.Add (new Message {message = "Message 3" });
+            //messages.Add (new Message {message = "Message 1" });
+            //messages.Add (new Message {message = "Message 2" });
+            //messages.Add (new Message {message = "Message 3" });
 
             library.Initialize();
+        }
+
+        private void HandleConnectionMessage(string obj)
+        {
+            messages.Add(new Message { message = obj });
         }
 
         public IEnumerable<Book> filteredBooks => library.GetBooksManager().GetBooks(activeBookFilter).ConvertAll(ModelLayer.ToBook);
@@ -77,8 +85,9 @@ namespace Library.Model
 
         public void Connect()
         {
-            //library.Connect();
+            library.Connect(new Uri("ws://localhost:8081"));
         }
+
         private void RefreshBooks()
         {
             books.Clear();

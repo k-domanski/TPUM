@@ -16,6 +16,7 @@ namespace Library.Logic
         public event Action<BookInfo> onBookRemoved;
         public event Action<PersonInfo> onPersonRemoved;
         public event Action<LendingInfo> onLendingRemoved;
+        public event Action<string> onConnectionMessage;
 
         public ILibraryDataLayer dataLayer { get; private set; }
         public IBooksManager booksManager { get; private set; }
@@ -116,7 +117,7 @@ namespace Library.Logic
 
         void ConnectionMessageHandler(string message)
         {
-
+            onConnectionMessage?.Invoke(message);
         }
 
         public static ILibrary CreateDefault()

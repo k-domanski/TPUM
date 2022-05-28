@@ -12,6 +12,7 @@ namespace Library.Logic
         event Action<BookInfo> onBookRemoved;
         event Action<PersonInfo> onPersonRemoved;
         event Action<LendingInfo> onLendingRemoved;
+        event Action<string> onConnectionMessage;
 
         void Initialize();
 
