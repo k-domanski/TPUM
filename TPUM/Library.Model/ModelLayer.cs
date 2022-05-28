@@ -13,6 +13,7 @@ namespace Library.Model
         public ObservableCollection<Book> books { get; private set; }
         public ObservableCollection<Person> users { get; private set; }
         public ObservableCollection<Lending> lendings { get; private set; }
+        public ObservableCollection<Message> messages { get; private set; }
 
         public static ModelLayer CreateDefault()
         {
@@ -44,6 +45,12 @@ namespace Library.Model
             books = new ObservableCollection<Book>();
             users = new ObservableCollection<Person>();
             lendings = new ObservableCollection<Lending>();
+            messages = new ObservableCollection<Message>();
+
+            //Test Messages
+            messages.Add (new Message {message = "Message 1" });
+            messages.Add (new Message {message = "Message 2" });
+            messages.Add (new Message {message = "Message 3" });
 
             library.Initialize();
         }
@@ -68,6 +75,10 @@ namespace Library.Model
             RefreshBooks();
         }
 
+        public void Connect()
+        {
+            //library.Connect();
+        }
         private void RefreshBooks()
         {
             books.Clear();

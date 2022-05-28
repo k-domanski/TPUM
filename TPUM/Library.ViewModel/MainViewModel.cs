@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Library.Model;
 
@@ -10,6 +11,7 @@ namespace Library.ViewModel
         public ICommand createNewBookCommand { get; private set; }
         public ICommand createNewUserCommand { get; private set; }
         public ICommand createNewLendingCommand { get; private set; }
+        public ICommand connectCommand { get; private set; }
 
         public IDialogService dialogService { get => _dialogService; set { _dialogService = value; } }
 
@@ -20,6 +22,7 @@ namespace Library.ViewModel
             createNewUserCommand = new ViewAction(HandleCreateUser);
             createNewLendingCommand = new ViewAction(HandleCreateLending);
             showOnlyAvailableCommand = new RelayCommand<object>(HandleShowOnlyAvailable);
+            connectCommand = new ViewAction(HandleConnect);
         }
 
         public ObservableCollection<Book> books
@@ -35,6 +38,11 @@ namespace Library.ViewModel
         public ObservableCollection<Lending> lendings
         {
             get => _modelLayer.lendings;
+        }
+
+        public ObservableCollection<Message> messages
+        {
+            get => _modelLayer.messages;
         }
 
         private void HandleCreateBook()
@@ -68,6 +76,11 @@ namespace Library.ViewModel
         private void HandleShowOnlyAvailable(object obj)
         {
             _modelLayer.ShouldApplyOnlyAvailableFilter((bool)obj);
+        }
+
+        private void HandleConnect()
+        {
+            _modelLayer.Connect();
         }
 
         #region Private

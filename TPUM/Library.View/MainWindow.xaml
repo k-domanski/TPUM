@@ -11,78 +11,100 @@
         <vm:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-            <CheckBox Command="{Binding showOnlyAvailableCommand}" 
-                      CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
-                      Content="Pokaż tylko dostępne"/>
-        </StackPanel>
-        <ListBox Grid.Row ="1" ItemsSource="{Binding books}" Margin="5" Background="MediumAquamarine">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="10,10,10,0" Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <CheckBox Command="{Binding showOnlyAvailableCommand}" 
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                          Content="Pokaż tylko dostępne"/>
+            </StackPanel>
+            <ListBox Grid.Row ="1" ItemsSource="{Binding books}" Margin="5" Background="MediumAquamarine">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10,10,10,0" Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding title}"/>
+                                        <Label Content="{Binding author}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding isbn}"/>
+                                        <Label Content="{Binding availability}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Row="2" Margin="5" Command="{Binding createNewBookCommand}">DODAJ KSIĄŻKĘ</Button>
+            <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding people}" Margin="5" Background="LightCyan">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10,10,10,0" Orientation="Vertical">
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding title}"/>
-                                    <Label Content="{Binding author}"/>
+                                    <Label Content="{Binding firstName}"/>
+                                    <Label Content="{Binding lastName}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding isbn}"/>
-                                    <Label Content="{Binding availability}"/>
+                                    <Label Content="{Binding id}"/>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Button Grid.Row="2" Margin="5" Command="{Binding createNewBookCommand}">DODAJ KSIĄŻKĘ</Button>
-        <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding people}" Margin="5" Background="LightCyan">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="10,10,10,0" Orientation="Vertical">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding firstName}"/>
-                                <Label Content="{Binding lastName}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding id}"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Button Grid.Column="1" Grid.Row="2" Margin="5" Command="{Binding createNewUserCommand}">DODAJ UŻYTKOWNIKA</Button>
-        <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding lendings}" Margin="5" Background="LightSalmon">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="10,10,10,0" Orientation="Vertical">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding userName}"/>
-                                <Label Content="{Binding userSurname}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding bookTitle}"/>
-                                <Label Content="{Binding bookAuthor}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Column="1" Grid.Row="2" Margin="5" Command="{Binding createNewUserCommand}">DODAJ UŻYTKOWNIKA</Button>
+            <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding lendings}" Margin="5" Background="LightSalmon">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10,10,10,0" Orientation="Vertical">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding userName}"/>
+                                    <Label Content="{Binding userSurname}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding bookTitle}"/>
+                                    <Label Content="{Binding bookAuthor}"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Button Grid.Column="2" Grid.Row="2" Margin="5" Command="{Binding createNewLendingCommand}">DODAJ WYPOŻYCZENIE</Button>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Column="2" Grid.Row="2" Margin="5" Command="{Binding createNewLendingCommand}">DODAJ WYPOŻYCZENIE</Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Command="{Binding connectCommand}" Margin="5">CONNECT</Button>
+            <ListBox Grid.Column="1" ItemsSource="{Binding messages}"  Margin="5">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="1,1,1,0" Orientation="Vertical">
+                            <Label Content="{Binding message}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </Window>
