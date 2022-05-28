@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.LogicServer;
 
 namespace Library.PresentationServer
 {
     class Program
     {
+        private static ILibrary _library;
+
         private static WebSocketConnection _connection;
         static async Task Main(string[] args)
         {
+            _library = LogicServer.Library.CreateDefault();
+
+
             Console.WriteLine("Server: Start");
             await WebSocketServer.Server(8081, ServerConnectionHandler);
         }
