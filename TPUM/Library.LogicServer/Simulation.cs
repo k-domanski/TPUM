@@ -46,18 +46,15 @@ namespace Library.LogicServer
 
         private void ProgressSimulation(object state, ElapsedEventArgs args)
         {
-            context.Post((obj) =>
+            Random rng = new Random(args.SignalTime.Second);
+            List<Func<Random, bool>> shuffle = new List<Func<Random, bool>>(actions.OrderBy(item => rng.Next()));
+            foreach (Func<Random, bool> func in shuffle)
             {
-                Random rng = new Random(args.SignalTime.Second);
-                List<Func<Random, bool>> shuffle = new List<Func<Random, bool>>(actions.OrderBy(item => rng.Next()));
-                foreach (Func<Random, bool> func in shuffle)
+                if (func.Invoke(rng))
                 {
-                    if (func.Invoke(rng))
-                    {
-                        break;
-                    }
+                    break;
                 }
-            }, null);
+            }
         }
 
         private bool LendBookAction(Random rng)

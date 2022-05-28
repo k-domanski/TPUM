@@ -55,7 +55,7 @@ namespace Library.LogicServer
             }
 
             AddInitialLibraryData();
-            simulation = new Simulation(this, 12.0f);
+            simulation = new Simulation(this, 3.0f);
             simulation.Start();
 
             isInitialized = true;
@@ -95,11 +95,6 @@ namespace Library.LogicServer
         public bool ReturnBook(LendingInfo lending)
         {
             return lendingsManager.RemoveLending(lending);
-        }
-
-        void ConnectionMessageHandler(string message)
-        {
-
         }
 
         public static ILibrary CreateDefault()
