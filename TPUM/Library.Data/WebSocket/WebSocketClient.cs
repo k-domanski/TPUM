@@ -59,9 +59,14 @@ namespace Library.Data
             {
                 try
                 {
-                    byte[] buffer = new byte[1024];
+                    byte[] buffer = new byte[1024 * 8];
                     while (true)
                     {
+                        if (_clientWebSocket.State == WebSocketState.Aborted)
+                        {
+                            onClose?.Invoke();
+                            return;
+                        }
                         ArraySegment<byte> segment = new ArraySegment<byte>(buffer);
                         WebSocketReceiveResult result = _clientWebSocket.ReceiveAsync(segment, CancellationToken.None).Result;
                         if (result.MessageType == WebSocketMessageType.Close)
@@ -91,6 +96,7 @@ namespace Library.Data
                 {
                     _log($"Connection has been broken because of an exception {ex}");
                     _clientWebSocket.CloseAsync(WebSocketCloseStatus.InternalServerError, "Connection has been broken because of an exception", CancellationToken.None).Wait();
+                    onClose?.Invoke();
                 }
             }
 

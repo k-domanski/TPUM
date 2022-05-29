@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Library.LogicServer;
+using Library.LogicServer.Filters;
 
 namespace Library.PresentationServer
 {
@@ -39,7 +41,11 @@ namespace Library.PresentationServer
         internal void ServerConnectionHandler(WebSocketConnection connection)
         {
             Console.WriteLine("Server: Connected");
-            connection.onClose = () => Console.WriteLine("Server: Closing");
+            connection.onClose = () =>
+            {
+                Console.WriteLine("Server: Closing");
+                _connection = null;
+            };
             connection.onMessage = ConnectionMessageHandler;
 
             _connection = connection;
@@ -48,6 +54,59 @@ namespace Library.PresentationServer
         public void ConnectionMessageHandler(string message)
         {
             Console.WriteLine($"Server: Received message {message}");
+            string[] operands = message.Split(';');
+            if (operands.Length < 1)
+            {
+                return;
+            }
+
+            string op = operands[0];
+            switch (op)
+            {
+                case "GetBooks":
+                    {
+                        List<BookInfo> books = _library.GetBooksManager().GetBooks(new PassFilter<BookInfo>());
+                        string response = $"SendBooks;{books.Count}";
+                        foreach (BookInfo book in books)
+                        {
+                            string bookstr = $";{book.id};{book.title};{book.author};{book.isbn};{book.isAvailable}";
+                            response += bookstr;
+                        }
+
+                        SendMessage(response);
+                        break;
+                    }
+
+                case "GetPersons":
+                    {
+                        List<PersonInfo> persons = _library.GetPersonsManager().GetPersons(new PassFilter<PersonInfo>());
+                        string response = $"SendPersons;{persons.Count}";
+                        foreach (PersonInfo person in persons)
+                        {
+                            string personstr = $";{person.id};{person.firstName};{person.surname}";
+                            response += personstr;
+                        }
+
+                        SendMessage(response);
+                        break;
+                    }
+
+                case "GetLendings":
+                {
+                    List<LendingInfo> lendings =
+                        _library.GetLendingsManager().GetLendings(new PassFilter<LendingInfo>());
+                    string response = $"SendLendings;{lendings.Count}";
+                    foreach (LendingInfo lending in lendings)
+                    {
+                        string lendingstr = $";{lending.bookID};{lending.personID}";
+                        response += lendingstr;
+                    }
+
+                    SendMessage(response);
+                    break;
+                }
+            }
+
         }
 
         public async Task SendMessage(string message)
@@ -61,7 +120,7 @@ namespace Library.PresentationServer
 
         public void HandleBookAdded(BookInfo book)
         {
-
+            SendMessage($"AddBook;{book.id};{book.title};{book.author};{book.isbn};{book.isAvailable}");
         }
 
         public void HandlePersonAdded(PersonInfo person)
@@ -71,7 +130,7 @@ namespace Library.PresentationServer
 
         public void HandleLendingAdded(LendingInfo lending)
         {
-            SendMessage($"Created Lending: {lending.bookID}, {lending.personID}");
+            SendMessage($"CreateLending;{lending.bookID};{lending.personID}");
         }
 
         public void HandleBookRemoved(BookInfo book)
@@ -86,7 +145,7 @@ namespace Library.PresentationServer
 
         public void HandleLendingRemoved(LendingInfo lending)
         {
-            SendMessage($"Removed Lending: {lending.bookID}, {lending.personID}");
+            SendMessage($"RemoveLending;{lending.bookID};{lending.personID}");
         }
     }
 }

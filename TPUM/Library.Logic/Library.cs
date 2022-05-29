@@ -118,52 +118,52 @@ namespace Library.Logic
 
         internal void AddInitialLibraryData()
         {
-            booksManager.CreateBook(new BookInfo { isbn = "345-078-234-654-2", author = "Adam Mickiewicz", title = "Pan Tadeusz" });
-            booksManager.CreateBook(new BookInfo { isbn = "456-672-096-135-9", author = "John Doe", title = "Yes or No" });
-            booksManager.CreateBook(new BookInfo { isbn = "457-838-495-325-6", author = "Stephenie Meyer", title = "The Chemist" });
-            booksManager.CreateBook(new BookInfo { isbn = "678-325-256-632-8", author = "Philip Pullman", title = "La Belle Sauvage" });
-            booksManager.CreateBook(new BookInfo { isbn = "548-261-156-636-4", author = "Ann Patchett", title = "These Precious Days: Essays" });
-            booksManager.CreateBook(new BookInfo { isbn = "416-563-563-793-3", author = "Eleanor Catton", title = "The Luminaries" });
-            booksManager.CreateBook(new BookInfo { isbn = "456-987-236-132-1", author = "Brit Bennett", title = "The Vanishing Half" });
-            booksManager.CreateBook(new BookInfo { isbn = "896-694-513-163-3", author = "Mariano Italiano", title = "Przepis na spaghetti" });
-            booksManager.CreateBook(new BookInfo { isbn = "633-672-987-564-3", author = "Rick Riordan", title = "The Kane Chronicles: The Red Pyramid" });
-            booksManager.CreateBook(new BookInfo { isbn = "961-649-985-321-5", author = "Aprilynne Pike", title = "Wings" });
-            booksManager.CreateBook(new BookInfo { isbn = "984-126-951-345-8", author = "Lev Grossman", title = "The Magician's Land" });
-            booksManager.CreateBook(new BookInfo { isbn = "269-567-619-943-5", author = "Kate Atkinson", title = "Life After Life" });
+            //booksManager.CreateBook(new BookInfo { isbn = "345-078-234-654-2", author = "Adam Mickiewicz", title = "Pan Tadeusz" });
+            //booksManager.CreateBook(new BookInfo { isbn = "456-672-096-135-9", author = "John Doe", title = "Yes or No" });
+            //booksManager.CreateBook(new BookInfo { isbn = "457-838-495-325-6", author = "Stephenie Meyer", title = "The Chemist" });
+            //booksManager.CreateBook(new BookInfo { isbn = "678-325-256-632-8", author = "Philip Pullman", title = "La Belle Sauvage" });
+            //booksManager.CreateBook(new BookInfo { isbn = "548-261-156-636-4", author = "Ann Patchett", title = "These Precious Days: Essays" });
+            //booksManager.CreateBook(new BookInfo { isbn = "416-563-563-793-3", author = "Eleanor Catton", title = "The Luminaries" });
+            //booksManager.CreateBook(new BookInfo { isbn = "456-987-236-132-1", author = "Brit Bennett", title = "The Vanishing Half" });
+            //booksManager.CreateBook(new BookInfo { isbn = "896-694-513-163-3", author = "Mariano Italiano", title = "Przepis na spaghetti" });
+            //booksManager.CreateBook(new BookInfo { isbn = "633-672-987-564-3", author = "Rick Riordan", title = "The Kane Chronicles: The Red Pyramid" });
+            //booksManager.CreateBook(new BookInfo { isbn = "961-649-985-321-5", author = "Aprilynne Pike", title = "Wings" });
+            //booksManager.CreateBook(new BookInfo { isbn = "984-126-951-345-8", author = "Lev Grossman", title = "The Magician's Land" });
+            //booksManager.CreateBook(new BookInfo { isbn = "269-567-619-943-5", author = "Kate Atkinson", title = "Life After Life" });
 
-            personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Robin", surname = "Miller" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Kenneth", surname = "Gallego" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Karolina", surname = "Michalska" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Elżbieta", surname = "Kozłowska" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Barbara", surname = "Pawlak" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Ludwik", surname = "Sobczak" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Felicjan", surname = "Jabłoński" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Agnieszka", surname = "Jaworska" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Krysia", surname = "Walczak" });
-            personsManager.CreatePerson(new PersonInfo { firstName = "Marcelina", surname = "Grabowska" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Stefan", surname = "Kowalski" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Robin", surname = "Miller" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Kenneth", surname = "Gallego" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Karolina", surname = "Michalska" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Elżbieta", surname = "Kozłowska" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Barbara", surname = "Pawlak" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Ludwik", surname = "Sobczak" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Felicjan", surname = "Jabłoński" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Agnieszka", surname = "Jaworska" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Krysia", surname = "Walczak" });
+            //personsManager.CreatePerson(new PersonInfo { firstName = "Marcelina", surname = "Grabowska" });
 
-            lendingsManager.CreateLending(new LendingInfo
-            {
-                bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[0].id,
-                personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[0].id
-            });
+            //lendingsManager.CreateLending(new LendingInfo
+            //{
+            //    bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[0].id,
+            //    personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[0].id
+            //});
 
-            lendingsManager.CreateLending(new LendingInfo
-            {
-                bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[1].id,
-                personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[1].id
-            });
-            lendingsManager.CreateLending(new LendingInfo
-            {
-                bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[2].id,
-                personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[2].id
-            });
-            lendingsManager.CreateLending(new LendingInfo
-            {
-                bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[3].id,
-                personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[3].id
-            });
+            //lendingsManager.CreateLending(new LendingInfo
+            //{
+            //    bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[1].id,
+            //    personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[1].id
+            //});
+            //lendingsManager.CreateLending(new LendingInfo
+            //{
+            //    bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[2].id,
+            //    personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[2].id
+            //});
+            //lendingsManager.CreateLending(new LendingInfo
+            //{
+            //    bookID = booksManager.GetBooks(new PassFilter<BookInfo>())[3].id,
+            //    personID = personsManager.GetPersons(new PassFilter<PersonInfo>())[3].id
+            //});
 
         }
 

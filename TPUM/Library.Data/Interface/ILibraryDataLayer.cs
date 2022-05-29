@@ -10,6 +10,7 @@ namespace Library.Data.Interface
         ILendingsRepository GetLendingsRepository();
         event Action<string> onConnectionMessage;
         Task Connect(Uri uri);
+        Task SendMessage(string message);
         void ConnectionMessageHandler(string message);
     }
 }
