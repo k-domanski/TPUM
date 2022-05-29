@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.LogicServer", "Libr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.PresentationServer", "Library.PresentationServer\Library.PresentationServer.csproj", "{DD676EC3-7028-42E3-B944-14B456BCF2A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.DataServer.UTest", "Library.DataServer.UTest\Library.DataServer.UTest.csproj", "{A98C132E-A397-4BEA-A85B-80C618FA73FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{DD676EC3-7028-42E3-B944-14B456BCF2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD676EC3-7028-42E3-B944-14B456BCF2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD676EC3-7028-42E3-B944-14B456BCF2A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A98C132E-A397-4BEA-A85B-80C618FA73FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A98C132E-A397-4BEA-A85B-80C618FA73FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A98C132E-A397-4BEA-A85B-80C618FA73FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A98C132E-A397-4BEA-A85B-80C618FA73FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

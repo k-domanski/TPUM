@@ -33,6 +33,29 @@ namespace Library.Data.UTest
             _invalidFactory = new InvalidPersonFactory();
         }
 
+        [TestMethod]
+        public void AddPerson_ValidPersonFactory_ReturnsTrue()
+        {
+            IPersonsRepository repository = new PersonsRepository();
+
+            bool addResult1 = repository.AddPerson(_validFactory.Create());
+            Assert.AreEqual(true, addResult1);
+
+            bool addResult2 = repository.AddPerson(_validFactory.Create());
+            Assert.AreEqual(true, addResult2);
+        }
+
+        [TestMethod]
+        public void AddPerson_InvalidPersonFactory_ReturnsFalse()
+        {
+            IPersonsRepository repository = new PersonsRepository();
+
+            bool addResult1 = repository.AddPerson(_invalidFactory.Create());
+            Assert.AreEqual(true, addResult1);
+
+            bool addResult2 = repository.AddPerson(_invalidFactory.Create());
+            Assert.AreEqual(false, addResult2);
+        }
         //TODO: More tests
     }
 }

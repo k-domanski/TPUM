@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Library.Data.Interface;
+using Library.DataServer.Interface;
 
-namespace Library.Data.UTest
+namespace Library.DataServer.UTest
 {
     internal class ValidBookFactory : IBookFactory
     {
@@ -56,7 +56,5 @@ namespace Library.Data.UTest
             bool addResult2 = repository.AddBook(_invalidFactory.Create());
             Assert.AreEqual(false, addResult2);
         }
-
-        //TODO: Tests for book query
     }
 }
