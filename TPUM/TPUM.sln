@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.PresentationServer"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.DataServer.UTest", "Library.DataServer.UTest\Library.DataServer.UTest.csproj", "{A98C132E-A397-4BEA-A85B-80C618FA73FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.LogicServer.UTest", "Library.LogicServer.UTest\Library.LogicServer.UTest.csproj", "{DED4F625-486E-44AC-998E-4E16FB3AFBF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{A98C132E-A397-4BEA-A85B-80C618FA73FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98C132E-A397-4BEA-A85B-80C618FA73FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A98C132E-A397-4BEA-A85B-80C618FA73FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED4F625-486E-44AC-998E-4E16FB3AFBF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED4F625-486E-44AC-998E-4E16FB3AFBF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED4F625-486E-44AC-998E-4E16FB3AFBF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED4F625-486E-44AC-998E-4E16FB3AFBF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

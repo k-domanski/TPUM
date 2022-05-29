@@ -3,7 +3,7 @@
 namespace Library.Logic.UTest
 {
     [TestClass]
-    public class UnitTest1
+    public class LibraryTest
     {
         [TestMethod]
         public void TestMethod1()
