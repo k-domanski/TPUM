@@ -68,7 +68,7 @@ namespace Library.LogicServer.UTest
         }
 
         [TestMethod]
-        public void CanLendBook_ReturnsTrue()
+        public void CanLend_BookNotAvailable_ReturnsFalse()
         {
             ILibrary library = new Library(_validDataLayer);
 
