@@ -21,7 +21,7 @@ namespace Library.LogicServer
             lock (_dataLock)
             {
                 List<BookInfo> books = _library.GetBooksManager().GetBooks(new BookIDFilter(initData.bookID));
-                if (books.Count == 1 && !books[0].isAvailable)
+                if (books.Count != 1 || !books[0].isAvailable)
                 {
                     return false;
                 }

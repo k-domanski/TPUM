@@ -85,32 +85,32 @@ namespace Library.LogicServer.UTest
             Assert.AreEqual(false, canLend);
         }
 
-        //[TestMethod]
-        //public void CreateLending_ReturnsTrue()
-        //{
-        //    ILibrary library = new Library(_validDataLayer);
-        //
-        //    BookInfo validBook = new BookInfo
-        //    {
-        //        author = "Stefan Żeromski",
-        //        id = Guid.NewGuid(),
-        //        isAvailable = false,
-        //        isbn = "123 456 789 0123",
-        //        title = "Ludzie Bezdomni"
-        //    };
-        //
-        //    PersonInfo validPerson = new PersonInfo
-        //    {
-        //        firstName = "Maciej",
-        //        surname = "Kowalski",
-        //        id = Guid.NewGuid()
-        //    };
-        //
-        //    library.GetBooksManager().CreateBook(validBook);
-        //    library.GetPersonsManager().CreatePerson(validPerson);
-        //
-        //    bool lendingResult = library.LendBook(validBook.id, validPerson.id);
-        //    Assert.AreEqual(false, lendingResult);
-        //}
+        [TestMethod]
+        public void CreateLending_ReturnsTrue()
+        {
+            ILibrary library = new Library(_validDataLayer);
+
+            BookInfo validBook = new BookInfo
+            {
+                author = "Stefan Żeromski",
+                id = Guid.NewGuid(),
+                isAvailable = false,
+                isbn = "123 456 789 0123",
+                title = "Ludzie Bezdomni"
+            };
+
+            PersonInfo validPerson = new PersonInfo
+            {
+                firstName = "Maciej",
+                surname = "Kowalski",
+                id = Guid.NewGuid()
+            };
+
+            bool bbook = library.GetBooksManager().CreateBook(validBook);
+            bool bperson = library.GetPersonsManager().CreatePerson(validPerson);
+
+            bool lendingResult = library.LendBook(validBook.id, validPerson.id);
+            Assert.AreEqual(false, lendingResult);
+        }
     }
 }
