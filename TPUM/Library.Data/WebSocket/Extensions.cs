@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Library.Logic
+namespace Library.Data
 {
     internal static class Extensions
     {

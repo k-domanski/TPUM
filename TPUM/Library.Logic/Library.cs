@@ -28,9 +28,7 @@ namespace Library.Logic
 
         public bool isInitialized { get; private set; } = false;
 
-        private Simulation simulation;
-        private WebSocketConnection connection = null;
-        private SynchronizationContext context = SynchronizationContext.Current;
+        //private Simulation simulation;
 
         public Library(ILibraryDataLayer dataLayer)
         {
@@ -38,6 +36,8 @@ namespace Library.Logic
             booksManager = new BooksManager(this);
             personsManager = new PersonsManager(this);
             lendingsManager = new LendingsManager(this);
+
+            dataLayer.onConnectionMessage += ConnectionMessageHandler;
 
             bookAvailableFilter = new BookAvailabilityFilter(true);
 
@@ -59,7 +59,6 @@ namespace Library.Logic
             }
 
             AddInitialLibraryData();
-            context = SynchronizationContext.Current;
             //simulation = new Simulation(this, 12.0f);
             //simulation.Start();
 
@@ -104,26 +103,12 @@ namespace Library.Logic
 
         public async Task Connect(Uri uri)
         {
-            try
-            {
-                connection = await WebSocketClient.Connect(uri, log => { });
-                if (connection != null)
-                {
-                    connection.onMessage = ConnectionMessageHandler;
-                }
-            }
-            catch
-            {
-                connection = null;
-            }
+            dataLayer.Connect(uri);
         }
 
         void ConnectionMessageHandler(string message)
         {
-            context.Post((obj) =>
-            {
-                onConnectionMessage?.Invoke(message);
-            }, null);
+            onConnectionMessage?.Invoke(message);
         }
 
         public static ILibrary CreateDefault()

@@ -62,9 +62,6 @@
     <Compile Include="PersonsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulation.cs" />
-    <Compile Include="WebSocket\Extensions.cs" />
-    <Compile Include="WebSocket\WebSocketClient.cs" />
-    <Compile Include="WebSocket\WebSocketConnection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.Data\Library.Data.csproj">
