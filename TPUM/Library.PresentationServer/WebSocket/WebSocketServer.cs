@@ -64,32 +64,52 @@ namespace Library.PresentationServer
 
             private void ServerMessageLoop(WebSocket ws)
             {
-                byte[] buffer = new byte[1024];
-                while (true)
+                try
                 {
-                    ArraySegment<byte> segments = new ArraySegment<byte>(buffer);
-                    WebSocketReceiveResult receiveResult = ws.ReceiveAsync(segments, CancellationToken.None).Result;
-                    if (receiveResult.MessageType == WebSocketMessageType.Close)
+
+                    byte[] buffer = new byte[1024 * 8];
+                    while (true)
                     {
-                        onClose?.Invoke();
-                        ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "I am closing", CancellationToken.None);
-                        return;
-                    }
-                    int count = receiveResult.Count;
-                    while (!receiveResult.EndOfMessage)
-                    {
-                        if (count >= buffer.Length)
+                        if (ws.State == WebSocketState.Aborted)
                         {
                             onClose?.Invoke();
-                            ws.CloseAsync(WebSocketCloseStatus.InvalidPayloadData, "That's too long", CancellationToken.None);
                             return;
                         }
-                        segments = new ArraySegment<byte>(buffer, count, buffer.Length - count);
-                        receiveResult = ws.ReceiveAsync(segments, CancellationToken.None).Result;
-                        count += receiveResult.Count;
+
+                        ArraySegment<byte> segments = new ArraySegment<byte>(buffer);
+                        WebSocketReceiveResult receiveResult = ws.ReceiveAsync(segments, CancellationToken.None).Result;
+                        if (receiveResult.MessageType == WebSocketMessageType.Close)
+                        {
+                            onClose?.Invoke();
+                            ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "I am closing", CancellationToken.None);
+                            return;
+                        }
+
+                        int count = receiveResult.Count;
+                        while (!receiveResult.EndOfMessage)
+                        {
+                            if (count >= buffer.Length)
+                            {
+                                onClose?.Invoke();
+                                ws.CloseAsync(WebSocketCloseStatus.InvalidPayloadData, "That's too long",
+                                    CancellationToken.None);
+                                return;
+                            }
+
+                            segments = new ArraySegment<byte>(buffer, count, buffer.Length - count);
+                            receiveResult = ws.ReceiveAsync(segments, CancellationToken.None).Result;
+                            count += receiveResult.Count;
+                        }
+
+                        string message = Encoding.UTF8.GetString(buffer, 0, count);
+                        onMessage?.Invoke(message);
                     }
-                    string message = Encoding.UTF8.GetString(buffer, 0, count);
-                    onMessage?.Invoke(message);
+                }
+                catch (Exception ex)
+                {
+                    ws.CloseAsync(WebSocketCloseStatus.InternalServerError, "Connection has been broken",
+                        CancellationToken.None).Wait();
+                    onClose?.Invoke();
                 }
             }
         }
