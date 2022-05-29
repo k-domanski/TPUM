@@ -68,7 +68,7 @@ namespace Library.LogicServer.UTest
         }
 
         [TestMethod]
-        public void CanLendBook_ReturnsTrue()
+        public void CanLend_BookNotAvailable_ReturnsFalse()
         {
             ILibrary library = new Library(_validDataLayer);
 
@@ -94,7 +94,7 @@ namespace Library.LogicServer.UTest
         //    {
         //        author = "Stefan Żeromski",
         //        id = Guid.NewGuid(),
-        //        isAvailable = false,
+        //        isAvailable = true,
         //        isbn = "123 456 789 0123",
         //        title = "Ludzie Bezdomni"
         //    };
