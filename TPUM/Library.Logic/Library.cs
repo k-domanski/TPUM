@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Library.Data;
 using Library.Data.Interface;
@@ -29,6 +30,7 @@ namespace Library.Logic
 
         private Simulation simulation;
         private WebSocketConnection connection = null;
+        private SynchronizationContext context = SynchronizationContext.Current;
 
         public Library(ILibraryDataLayer dataLayer)
         {
@@ -57,6 +59,7 @@ namespace Library.Logic
             }
 
             AddInitialLibraryData();
+            context = SynchronizationContext.Current;
             //simulation = new Simulation(this, 12.0f);
             //simulation.Start();
 
@@ -117,7 +120,10 @@ namespace Library.Logic
 
         void ConnectionMessageHandler(string message)
         {
-            onConnectionMessage?.Invoke(message);
+            context.Post((obj) =>
+            {
+                onConnectionMessage?.Invoke(message);
+            }, null);
         }
 
         public static ILibrary CreateDefault()

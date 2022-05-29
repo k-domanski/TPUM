@@ -85,7 +85,7 @@ namespace Library.Model
 
         public void Connect()
         {
-            library.Connect(new Uri("ws://localhost:8081"));
+            library.Connect(new Uri("ws://localhost:8888"));
         }
 
         private void RefreshBooks()

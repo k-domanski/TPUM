@@ -34,7 +34,7 @@ namespace Library.PresentationServer
             //}
 
             Console.WriteLine("Server: Start");
-            await WebSocketServer.Server(8081, ServerConnectionHandler);
+            await WebSocketServer.Server(8888, ServerConnectionHandler);
         }
 
         static void ServerConnectionHandler(WebSocketConnection connection)
@@ -46,13 +46,13 @@ namespace Library.PresentationServer
             _connection = connection;
         }
 
-        static void TrySendMessage(string message)
-        {
-            if (_connection != null)
-            {
-                _connection.SendAsync(message);
-            }
-        }
+        //static void TrySendMessage(string message)
+        //{
+        //    if (_connection != null)
+        //    {
+        //        _connection.SendAsync(message);
+        //    }
+        //}
 
         static void ConnectionMessageHandler(string message)
         {
@@ -61,8 +61,11 @@ namespace Library.PresentationServer
 
         static async Task SendMessage(string message)
         {
-            Console.WriteLine($"Server: Sending message {message}");
-            await _connection.SendAsync(message);
+            if (_connection != null)
+            {
+                Console.WriteLine($"Server: Sending message {message}");
+                await _connection.SendAsync(message);
+            }
         }
 
         static void HandleBookAdded(BookInfo book)
@@ -77,8 +80,7 @@ namespace Library.PresentationServer
 
         static void HandleLendingAdded(LendingInfo lending)
         {
-            Console.WriteLine($"Created Lending: {lending.bookID}, {lending.personID}");
-            TrySendMessage("CreatedLending");
+            SendMessage($"Created Lending: {lending.bookID}, {lending.personID}");
         }
 
         static void HandleBookRemoved(BookInfo book)
@@ -93,8 +95,7 @@ namespace Library.PresentationServer
 
         static void HandleLendingRemoved(LendingInfo lending)
         {
-            Console.WriteLine($"Removed Lending: {lending.bookID}, {lending.personID}");
-            TrySendMessage("RemovedLending");
+            SendMessage($"Removed Lending: {lending.bookID}, {lending.personID}");
         }
     }
 }
