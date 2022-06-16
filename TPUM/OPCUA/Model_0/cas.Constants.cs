@@ -35,28 +35,28 @@ using System.Xml;
 using System.Runtime.Serialization;
 using Opc.Ua;
 
-namespace 
+namespace cas
 {
-    #region DataType Identifiers
+    #region ObjectType Identifiers
     /// <summary>
-    /// A class that declares constants for all DataTypes in the Model Design.
+    /// A class that declares constants for all ObjectTypes in the Model Design.
     /// </summary>
     /// <exclude />
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Opc.Ua.ModelCompiler", "1.0.0.0")]
-    public static partial class DataTypes
+    public static partial class ObjectTypes
     {
         /// <summary>
-        /// The identifier for the Book DataType.
+        /// The identifier for the Book ObjectType.
         /// </summary>
         public const uint Book = 1;
 
         /// <summary>
-        /// The identifier for the Person DataType.
+        /// The identifier for the Person ObjectType.
         /// </summary>
         public const uint Person = 15;
 
         /// <summary>
-        /// The identifier for the Lending DataType.
+        /// The identifier for the Lending ObjectType.
         /// </summary>
         public const uint Lending = 19;
     }
@@ -71,14 +71,9 @@ namespace
     public static partial class Variables
     {
         /// <summary>
-        /// The identifier for the Book_tittle Variable.
+        /// The identifier for the Book_title Variable.
         /// </summary>
-        public const uint Book_tittle = 2;
-
-        /// <summary>
-        /// The identifier for the Book_isbn Variable.
-        /// </summary>
-        public const uint Book_isbn = 11;
+        public const uint Book_title = 22;
 
         /// <summary>
         /// The identifier for the Book_author Variable.
@@ -86,9 +81,9 @@ namespace
         public const uint Book_author = 12;
 
         /// <summary>
-        /// The identifier for the Book_isAvailable Variable.
+        /// The identifier for the Book_isbn Variable.
         /// </summary>
-        public const uint Book_isAvailable = 13;
+        public const uint Book_isbn = 11;
 
         /// <summary>
         /// The identifier for the Book_id Variable.
@@ -111,69 +106,39 @@ namespace
         public const uint Person_surname = 18;
 
         /// <summary>
-        /// The identifier for the Lending_personID Variable.
-        /// </summary>
-        public const uint Lending_personID = 20;
-
-        /// <summary>
         /// The identifier for the Lending_bookID Variable.
         /// </summary>
         public const uint Lending_bookID = 21;
 
         /// <summary>
-        /// The identifier for the cas_BinarySchema Variable.
+        /// The identifier for the Lending_personID Variable.
         /// </summary>
-        public const uint cas_BinarySchema = 3;
-
-        /// <summary>
-        /// The identifier for the cas_BinarySchema_NamespaceUri Variable.
-        /// </summary>
-        public const uint cas_BinarySchema_NamespaceUri = 5;
-
-        /// <summary>
-        /// The identifier for the cas_BinarySchema_Deprecated Variable.
-        /// </summary>
-        public const uint cas_BinarySchema_Deprecated = 6;
-
-        /// <summary>
-        /// The identifier for the cas_XmlSchema Variable.
-        /// </summary>
-        public const uint cas_XmlSchema = 7;
-
-        /// <summary>
-        /// The identifier for the cas_XmlSchema_NamespaceUri Variable.
-        /// </summary>
-        public const uint cas_XmlSchema_NamespaceUri = 9;
-
-        /// <summary>
-        /// The identifier for the cas_XmlSchema_Deprecated Variable.
-        /// </summary>
-        public const uint cas_XmlSchema_Deprecated = 10;
+        public const uint Lending_personID = 20;
     }
     #endregion
 
-    #region DataType Node Identifiers
+    #region ObjectType Node Identifiers
     /// <summary>
-    /// A class that declares constants for all DataTypes in the Model Design.
+    /// A class that declares constants for all ObjectTypes in the Model Design.
     /// </summary>
     /// <exclude />
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Opc.Ua.ModelCompiler", "1.0.0.0")]
-    public static partial class DataTypeIds
+    public static partial class ObjectTypeIds
     {
         /// <summary>
-        /// The identifier for the Book DataType.
+        /// The identifier for the Book ObjectType.
         /// </summary>
-        public static readonly ExpandedNodeId Book = new ExpandedNodeId(.DataTypes.Book, .Namespaces.cas);
+        public static readonly ExpandedNodeId Book = new ExpandedNodeId(cas.ObjectTypes.Book, cas.Namespaces.cas);
 
         /// <summary>
-        /// The identifier for the Person DataType.
+        /// The identifier for the Person ObjectType.
         /// </summary>
-        public static readonly ExpandedNodeId Person = new ExpandedNodeId(.DataTypes.Person, .Namespaces.cas);
+        public static readonly ExpandedNodeId Person = new ExpandedNodeId(cas.ObjectTypes.Person, cas.Namespaces.cas);
 
         /// <summary>
-        /// The identifier for the Lending DataType.
+        /// The identifier for the Lending ObjectType.
         /// </summary>
-        public static readonly ExpandedNodeId Lending = new ExpandedNodeId(.DataTypes.Lending, .Namespaces.cas);
+        public static readonly ExpandedNodeId Lending = new ExpandedNodeId(cas.ObjectTypes.Lending, cas.Namespaces.cas);
     }
     #endregion
 
@@ -186,84 +151,49 @@ namespace
     public static partial class VariableIds
     {
         /// <summary>
-        /// The identifier for the Book_tittle Variable.
+        /// The identifier for the Book_title Variable.
         /// </summary>
-        public static readonly ExpandedNodeId Book_tittle = new ExpandedNodeId(.Variables.Book_tittle, .Namespaces.cas);
-
-        /// <summary>
-        /// The identifier for the Book_isbn Variable.
-        /// </summary>
-        public static readonly ExpandedNodeId Book_isbn = new ExpandedNodeId(.Variables.Book_isbn, .Namespaces.cas);
+        public static readonly ExpandedNodeId Book_title = new ExpandedNodeId(cas.Variables.Book_title, cas.Namespaces.cas);
 
         /// <summary>
         /// The identifier for the Book_author Variable.
         /// </summary>
-        public static readonly ExpandedNodeId Book_author = new ExpandedNodeId(.Variables.Book_author, .Namespaces.cas);
+        public static readonly ExpandedNodeId Book_author = new ExpandedNodeId(cas.Variables.Book_author, cas.Namespaces.cas);
 
         /// <summary>
-        /// The identifier for the Book_isAvailable Variable.
+        /// The identifier for the Book_isbn Variable.
         /// </summary>
-        public static readonly ExpandedNodeId Book_isAvailable = new ExpandedNodeId(.Variables.Book_isAvailable, .Namespaces.cas);
+        public static readonly ExpandedNodeId Book_isbn = new ExpandedNodeId(cas.Variables.Book_isbn, cas.Namespaces.cas);
 
         /// <summary>
         /// The identifier for the Book_id Variable.
         /// </summary>
-        public static readonly ExpandedNodeId Book_id = new ExpandedNodeId(.Variables.Book_id, .Namespaces.cas);
+        public static readonly ExpandedNodeId Book_id = new ExpandedNodeId(cas.Variables.Book_id, cas.Namespaces.cas);
 
         /// <summary>
         /// The identifier for the Person_id Variable.
         /// </summary>
-        public static readonly ExpandedNodeId Person_id = new ExpandedNodeId(.Variables.Person_id, .Namespaces.cas);
+        public static readonly ExpandedNodeId Person_id = new ExpandedNodeId(cas.Variables.Person_id, cas.Namespaces.cas);
 
         /// <summary>
         /// The identifier for the Person_firstName Variable.
         /// </summary>
-        public static readonly ExpandedNodeId Person_firstName = new ExpandedNodeId(.Variables.Person_firstName, .Namespaces.cas);
+        public static readonly ExpandedNodeId Person_firstName = new ExpandedNodeId(cas.Variables.Person_firstName, cas.Namespaces.cas);
 
         /// <summary>
         /// The identifier for the Person_surname Variable.
         /// </summary>
-        public static readonly ExpandedNodeId Person_surname = new ExpandedNodeId(.Variables.Person_surname, .Namespaces.cas);
-
-        /// <summary>
-        /// The identifier for the Lending_personID Variable.
-        /// </summary>
-        public static readonly ExpandedNodeId Lending_personID = new ExpandedNodeId(.Variables.Lending_personID, .Namespaces.cas);
+        public static readonly ExpandedNodeId Person_surname = new ExpandedNodeId(cas.Variables.Person_surname, cas.Namespaces.cas);
 
         /// <summary>
         /// The identifier for the Lending_bookID Variable.
         /// </summary>
-        public static readonly ExpandedNodeId Lending_bookID = new ExpandedNodeId(.Variables.Lending_bookID, .Namespaces.cas);
+        public static readonly ExpandedNodeId Lending_bookID = new ExpandedNodeId(cas.Variables.Lending_bookID, cas.Namespaces.cas);
 
         /// <summary>
-        /// The identifier for the cas_BinarySchema Variable.
+        /// The identifier for the Lending_personID Variable.
         /// </summary>
-        public static readonly ExpandedNodeId cas_BinarySchema = new ExpandedNodeId(.Variables.cas_BinarySchema, .Namespaces.cas);
-
-        /// <summary>
-        /// The identifier for the cas_BinarySchema_NamespaceUri Variable.
-        /// </summary>
-        public static readonly ExpandedNodeId cas_BinarySchema_NamespaceUri = new ExpandedNodeId(.Variables.cas_BinarySchema_NamespaceUri, .Namespaces.cas);
-
-        /// <summary>
-        /// The identifier for the cas_BinarySchema_Deprecated Variable.
-        /// </summary>
-        public static readonly ExpandedNodeId cas_BinarySchema_Deprecated = new ExpandedNodeId(.Variables.cas_BinarySchema_Deprecated, .Namespaces.cas);
-
-        /// <summary>
-        /// The identifier for the cas_XmlSchema Variable.
-        /// </summary>
-        public static readonly ExpandedNodeId cas_XmlSchema = new ExpandedNodeId(.Variables.cas_XmlSchema, .Namespaces.cas);
-
-        /// <summary>
-        /// The identifier for the cas_XmlSchema_NamespaceUri Variable.
-        /// </summary>
-        public static readonly ExpandedNodeId cas_XmlSchema_NamespaceUri = new ExpandedNodeId(.Variables.cas_XmlSchema_NamespaceUri, .Namespaces.cas);
-
-        /// <summary>
-        /// The identifier for the cas_XmlSchema_Deprecated Variable.
-        /// </summary>
-        public static readonly ExpandedNodeId cas_XmlSchema_Deprecated = new ExpandedNodeId(.Variables.cas_XmlSchema_Deprecated, .Namespaces.cas);
+        public static readonly ExpandedNodeId Lending_personID = new ExpandedNodeId(cas.Variables.Lending_personID, cas.Namespaces.cas);
     }
     #endregion
 
@@ -290,16 +220,6 @@ namespace
         public const string bookID = "bookID";
 
         /// <summary>
-        /// The BrowseName for the cas_BinarySchema component.
-        /// </summary>
-        public const string cas_BinarySchema = "";
-
-        /// <summary>
-        /// The BrowseName for the cas_XmlSchema component.
-        /// </summary>
-        public const string cas_XmlSchema = "";
-
-        /// <summary>
         /// The BrowseName for the firstName component.
         /// </summary>
         public const string firstName = "firstName";
@@ -308,11 +228,6 @@ namespace
         /// The BrowseName for the id component.
         /// </summary>
         public const string id = "id";
-
-        /// <summary>
-        /// The BrowseName for the isAvailable component.
-        /// </summary>
-        public const string isAvailable = "isAvailable";
 
         /// <summary>
         /// The BrowseName for the isbn component.
@@ -340,9 +255,9 @@ namespace
         public const string surname = "surname";
 
         /// <summary>
-        /// The BrowseName for the tittle component.
+        /// The BrowseName for the title component.
         /// </summary>
-        public const string tittle = "tittle";
+        public const string title = "title";
     }
     #endregion
 
@@ -354,9 +269,14 @@ namespace
     public static partial class Namespaces
     {
         /// <summary>
-        /// The URI for the cas namespace (.NET code namespace is '').
+        /// The URI for the cas namespace (.NET code namespace is 'cas').
         /// </summary>
         public const string cas = "http://cas.eu/UA/CommServer/";
+
+        /// <summary>
+        /// The URI for the casXsd namespace (.NET code namespace is 'cas').
+        /// </summary>
+        public const string casXsd = "cas";
 
         /// <summary>
         /// The URI for the OpcUa namespace (.NET code namespace is 'Opc.Ua').

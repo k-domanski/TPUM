@@ -1,29 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <q1:ModelDesign xmlns:cas="http://cas.eu/UA/CommServer/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/" TargetNamespace="http://cas.eu/UA/CommServer/" xmlns:q1="http://opcfoundation.org/UA/ModelDesign.xsd">
   <q1:Namespaces>
-    <q1:Namespace Name="cas" XmlPrefix="cas">http://cas.eu/UA/CommServer/</q1:Namespace>
+    <q1:Namespace Name="cas" Prefix="cas" InternalPrefix="cas" XmlNamespace="cas" XmlPrefix="cas">http://cas.eu/UA/CommServer/</q1:Namespace>
     <q1:Namespace Name="OpcUa" Prefix="Opc.Ua" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd">http://opcfoundation.org/UA/</q1:Namespace>
   </q1:Namespaces>
-  <q1:DataType SymbolicName="cas:Book">
+  <q1:ObjectType SymbolicName="cas:Book">
     <q1:Children>
-      <q1:Variable SymbolicName="cas:tittle" DataType="String" />
-      <q1:Variable SymbolicName="cas:isbn" DataType="String" />
+      <q1:Variable SymbolicName="cas:title" DataType="String" />
       <q1:Variable SymbolicName="cas:author" DataType="String" />
-      <q1:Property SymbolicName="cas:isAvailable" DataType="Boolean" AccessLevel="ReadWrite" />
+      <q1:Variable SymbolicName="cas:isbn" DataType="String" />
       <q1:Variable SymbolicName="cas:id" DataType="Guid" />
     </q1:Children>
-  </q1:DataType>
-  <q1:DataType SymbolicName="cas:Person">
+  </q1:ObjectType>
+  <q1:ObjectType SymbolicName="cas:Person">
     <q1:Children>
       <q1:Variable SymbolicName="cas:id" DataType="Guid" />
       <q1:Variable SymbolicName="cas:firstName" DataType="String" />
       <q1:Variable SymbolicName="cas:surname" DataType="String" />
     </q1:Children>
-  </q1:DataType>
-  <q1:DataType SymbolicName="cas:Lending">
+  </q1:ObjectType>
+  <q1:ObjectType SymbolicName="cas:Lending">
     <q1:Children>
-      <q1:Variable SymbolicName="cas:personID" DataType="Guid" />
       <q1:Variable SymbolicName="cas:bookID" DataType="Guid" />
+      <q1:Variable SymbolicName="cas:personID" DataType="Guid" />
     </q1:Children>
-  </q1:DataType>
+  </q1:ObjectType>
 </q1:ModelDesign>

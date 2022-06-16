@@ -8,13 +8,4 @@
 >
   <opc:Import Namespace="http://opcfoundation.org/UA/" Location="Opc.Ua.BinarySchema.bsd"/>
 
-  <opc:OpaqueType Name="Book">
-  </opc:OpaqueType>
-
-  <opc:OpaqueType Name="Person">
-  </opc:OpaqueType>
-
-  <opc:OpaqueType Name="Lending">
-  </opc:OpaqueType>
-
 </opc:TypeDictionary>
