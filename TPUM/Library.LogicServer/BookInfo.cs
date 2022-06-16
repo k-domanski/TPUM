@@ -1,8 +1,9 @@
 ﻿using System;
+using Library.LogicServer.Interface;
 
 namespace Library.LogicServer
 {
-    public struct BookInfo
+    public struct BookInfo : IBookInfo
     {
         public Guid id { get; set; }
         public string isbn { get; set; }

@@ -155,4 +155,18 @@
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=19</Reference>
     </References>
   </UAVariable>
+  <UAObject NodeId="ns=1;i=23" BrowseName="1:BookDTO">
+    <DisplayName>BookDTO</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=25</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=25" BrowseName="1:title" ParentNodeId="ns=1;i=23" DataType="String">
+    <DisplayName>title</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=23</Reference>
+    </References>
+  </UAVariable>
 </UANodeSet>

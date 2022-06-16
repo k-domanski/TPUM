@@ -97,46 +97,40 @@ namespace Library.Data
             {
                 case "AddBook":
                     {
-                        if (operands.Length < 6)
+                        if (operands.Length < 2)
                         {
                             return false;
                         }
-                        //Guid id = Guid.Parse(operands[1]);
-                        //string title = operands[2];
-                        //string author = operands[3];
-                        //string isbn = operands[4];
-                        //bool available = Boolean.Parse(operands[5]);
-                        IBook book = BookFromArgs(operands, 1);
+
+                        IBook book = Serializer.DeserializeBook(operands[1]);
                         _booksRepository.AddBook(book);
                         break;
                     }
 
                 case "CreateLending":
                     {
-                        if (operands.Length < 3)
+                        if (operands.Length < 2)
                         {
                             return false;
                         }
 
-                        Guid bookID = Guid.Parse(operands[1]);
-                        Guid personID = Guid.Parse(operands[2]);
-                        _lendingsRepository.AddLending(new Lending(personID, bookID));
+                        ILending lending = Serializer.DeserializeLending(operands[1]);
+                        _lendingsRepository.AddLending(lending);
 
                         break;
                     }
 
                 case "RemoveLending":
                     {
-                        if (operands.Length < 3)
+                        if (operands.Length < 2)
                         {
                             return false;
                         }
 
-                        Guid bookID = Guid.Parse(operands[1]);
-                        Guid personID = Guid.Parse(operands[2]);
-                        List<ILending> lendings = _lendingsRepository.FindLendingsByPredicate((lending) =>
+                        ILending lending = Serializer.DeserializeLending(operands[1]);
+                        List<ILending> lendings = _lendingsRepository.FindLendingsByPredicate((item) =>
                         {
-                            return lending.GetBookID() == bookID && lending.GetPersonID() == personID;
+                            return item.GetBookID() == lending.GetBookID() && item.GetPersonID() == lending.GetPersonID();
                         });
                         if (lendings.Count != 1)
                         {
@@ -154,48 +148,48 @@ namespace Library.Data
                         }
 
                         int count = Int32.Parse(operands[1]);
-                        for(int idx = 0; idx < count ; ++idx)
+                        for (int idx = 0; idx < count; ++idx)
                         {
-                            int offset = 2 + idx * 5; // 5 arguments to create a Book
-                            IBook book = BookFromArgs(operands, offset);
+                            int offset = 2 + idx;
+                            IBook book = Serializer.DeserializeBook(operands[offset]);
                             _booksRepository.AddBook(book);
                         }
                         break;
                     }
 
                 case "SendPersons":
-                {
-                    if (operands.Length < 2)
                     {
-                        return false;
-                    }
+                        if (operands.Length < 2)
+                        {
+                            return false;
+                        }
 
-                    int count = Int32.Parse(operands[1]);
-                    for (int idx = 0; idx < count; ++idx)
-                    {
-                        int offset = 2 + idx * 3; // 3 arguments to create a Person
-                        IPerson person = PersonFromArgs(operands, offset);
-                        _personsRepository.AddPerson(person);
+                        int count = Int32.Parse(operands[1]);
+                        for (int idx = 0; idx < count; ++idx)
+                        {
+                            int offset = 2 + idx;
+                            IPerson person = Serializer.DeserializePerson(operands[offset]);
+                            _personsRepository.AddPerson(person);
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case "SendLendings":
-                {
-                    if (operands.Length < 2)
                     {
-                        return false;
-                    }
+                        if (operands.Length < 2)
+                        {
+                            return false;
+                        }
 
-                    int count = Int32.Parse(operands[1]);
-                    for (int idx = 0; idx < count; ++idx)
-                    {
-                        int offset = 2 + idx * 2; // 2 arguments to create a Lending
-                        ILending lending = LendingFromArgs(operands, offset);
-                        _lendingsRepository.AddLending(lending);
+                        int count = Int32.Parse(operands[1]);
+                        for (int idx = 0; idx < count; ++idx)
+                        {
+                            int offset = 2 + idx;
+                            ILending lending = Serializer.DeserializeLending(operands[offset]);
+                            _lendingsRepository.AddLending(lending);
+                        }
+                        break;
                     }
-                    break;
-                }
             }
 
 

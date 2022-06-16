@@ -20,5 +20,6 @@ Lending,19,ObjectType
 Lending_personID,20,Variable
 Lending_bookID,21,Variable
 Book_title,22,Variable
-BookDTO,23,Unspecified
+BookDTO,23,Object
 BookDTO_author,24,Unspecified
+BookDTO_title,25,Variable

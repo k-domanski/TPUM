@@ -59,10 +59,16 @@
     <Compile Include="Person.cs" />
     <Compile Include="PersonsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="WebSocket\Extensions.cs" />
     <Compile Include="WebSocket\WebSocketClient.cs" />
     <Compile Include="WebSocket\WebSocketConnection.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Library.DTO\Library.DTO.csproj">
+      <Project>{69e27f21-aa94-43b2-a3e9-cc3a5aeba80a}</Project>
+      <Name>Library.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

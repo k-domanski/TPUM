@@ -37,6 +37,21 @@ using Opc.Ua;
 
 namespace cas
 {
+    #region Object Identifiers
+    /// <summary>
+    /// A class that declares constants for all Objects in the Model Design.
+    /// </summary>
+    /// <exclude />
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Opc.Ua.ModelCompiler", "1.0.0.0")]
+    public static partial class Objects
+    {
+        /// <summary>
+        /// The identifier for the BookDTO Object.
+        /// </summary>
+        public const uint BookDTO = 23;
+    }
+    #endregion
+
     #region ObjectType Identifiers
     /// <summary>
     /// A class that declares constants for all ObjectTypes in the Model Design.
@@ -114,6 +129,26 @@ namespace cas
         /// The identifier for the Lending_personID Variable.
         /// </summary>
         public const uint Lending_personID = 20;
+
+        /// <summary>
+        /// The identifier for the BookDTO_title Variable.
+        /// </summary>
+        public const uint BookDTO_title = 25;
+    }
+    #endregion
+
+    #region Object Node Identifiers
+    /// <summary>
+    /// A class that declares constants for all Objects in the Model Design.
+    /// </summary>
+    /// <exclude />
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Opc.Ua.ModelCompiler", "1.0.0.0")]
+    public static partial class ObjectIds
+    {
+        /// <summary>
+        /// The identifier for the BookDTO Object.
+        /// </summary>
+        public static readonly ExpandedNodeId BookDTO = new ExpandedNodeId(cas.Objects.BookDTO, cas.Namespaces.cas);
     }
     #endregion
 
@@ -194,6 +229,11 @@ namespace cas
         /// The identifier for the Lending_personID Variable.
         /// </summary>
         public static readonly ExpandedNodeId Lending_personID = new ExpandedNodeId(cas.Variables.Lending_personID, cas.Namespaces.cas);
+
+        /// <summary>
+        /// The identifier for the BookDTO_title Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId BookDTO_title = new ExpandedNodeId(cas.Variables.BookDTO_title, cas.Namespaces.cas);
     }
     #endregion
 
@@ -213,6 +253,11 @@ namespace cas
         /// The BrowseName for the Book component.
         /// </summary>
         public const string Book = "Book";
+
+        /// <summary>
+        /// The BrowseName for the BookDTO component.
+        /// </summary>
+        public const string BookDTO = "BookDTO";
 
         /// <summary>
         /// The BrowseName for the bookID component.

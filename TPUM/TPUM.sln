@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.LogicServer.UTest",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCUA", "OPCUA\OPCUA.csproj", "{86085EC7-428C-4BBD-A4AA-BD3195D02AFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.DTO", "Library.DTO\Library.DTO.csproj", "{69E27F21-AA94-43B2-A3E9-CC3A5AEBA80A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{86085EC7-428C-4BBD-A4AA-BD3195D02AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86085EC7-428C-4BBD-A4AA-BD3195D02AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86085EC7-428C-4BBD-A4AA-BD3195D02AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69E27F21-AA94-43B2-A3E9-CC3A5AEBA80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E27F21-AA94-43B2-A3E9-CC3A5AEBA80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69E27F21-AA94-43B2-A3E9-CC3A5AEBA80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69E27F21-AA94-43B2-A3E9-CC3A5AEBA80A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

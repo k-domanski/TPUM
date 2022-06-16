@@ -47,6 +47,7 @@
     <Compile Include="PresentationLayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="WebSocket\Extensions.cs" />
     <Compile Include="WebSocket\WebSocketConnection.cs" />
     <Compile Include="WebSocket\WebSocketServer.cs" />
@@ -55,6 +56,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Library.DTO\Library.DTO.csproj">
+      <Project>{69e27f21-aa94-43b2-a3e9-cc3a5aeba80a}</Project>
+      <Name>Library.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Library.LogicServer\Library.LogicServer.csproj">
       <Project>{4b2b1a2b-8292-485f-bd22-7ed3608827a0}</Project>
       <Name>Library.LogicServer</Name>

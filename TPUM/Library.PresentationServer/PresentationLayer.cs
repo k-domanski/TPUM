@@ -69,7 +69,7 @@ namespace Library.PresentationServer
                         string response = $"SendBooks;{books.Count}";
                         foreach (BookInfo book in books)
                         {
-                            string bookstr = $";{book.id};{book.title};{book.author};{book.isbn};{book.isAvailable}";
+                            string bookstr = $";{Serializer.SerializeBook(book)}";
                             response += bookstr;
                         }
 
@@ -83,7 +83,7 @@ namespace Library.PresentationServer
                         string response = $"SendPersons;{persons.Count}";
                         foreach (PersonInfo person in persons)
                         {
-                            string personstr = $";{person.id};{person.firstName};{person.surname}";
+                            string personstr = $";{Serializer.SerializePerson(person)}";
                             response += personstr;
                         }
 
@@ -92,19 +92,19 @@ namespace Library.PresentationServer
                     }
 
                 case "GetLendings":
-                {
-                    List<LendingInfo> lendings =
-                        _library.GetLendingsManager().GetLendings(new PassFilter<LendingInfo>());
-                    string response = $"SendLendings;{lendings.Count}";
-                    foreach (LendingInfo lending in lendings)
                     {
-                        string lendingstr = $";{lending.bookID};{lending.personID}";
-                        response += lendingstr;
-                    }
+                        List<LendingInfo> lendings =
+                            _library.GetLendingsManager().GetLendings(new PassFilter<LendingInfo>());
+                        string response = $"SendLendings;{lendings.Count}";
+                        foreach (LendingInfo lending in lendings)
+                        {
+                            string lendingstr = $";{Serializer.SerializeLending(lending)}";
+                            response += lendingstr;
+                        }
 
-                    SendMessage(response);
-                    break;
-                }
+                        SendMessage(response);
+                        break;
+                    }
             }
 
         }
@@ -120,7 +120,7 @@ namespace Library.PresentationServer
 
         public void HandleBookAdded(BookInfo book)
         {
-            SendMessage($"AddBook;{book.id};{book.title};{book.author};{book.isbn};{book.isAvailable}");
+            SendMessage($"AddBook;{Serializer.SerializeBook(book)}");
         }
 
         public void HandlePersonAdded(PersonInfo person)
@@ -130,7 +130,7 @@ namespace Library.PresentationServer
 
         public void HandleLendingAdded(LendingInfo lending)
         {
-            SendMessage($"CreateLending;{lending.bookID};{lending.personID}");
+            SendMessage($"CreateLending;{Serializer.SerializeLending(lending)}");
         }
 
         public void HandleBookRemoved(BookInfo book)
@@ -145,7 +145,7 @@ namespace Library.PresentationServer
 
         public void HandleLendingRemoved(LendingInfo lending)
         {
-            SendMessage($"RemoveLending;{lending.bookID};{lending.personID}");
+            SendMessage($"RemoveLending;{Serializer.SerializeLending(lending)}");
         }
     }
 }

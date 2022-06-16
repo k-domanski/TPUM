@@ -25,4 +25,9 @@
       <q1:Variable SymbolicName="cas:personID" DataType="Guid" />
     </q1:Children>
   </q1:ObjectType>
+  <q1:Object SymbolicName="cas:BookDTO">
+    <q1:Children>
+      <q1:Variable SymbolicName="cas:title" DataType="String" />
+    </q1:Children>
+  </q1:Object>
 </q1:ModelDesign>

@@ -49,10 +49,13 @@
     <Compile Include="Filters\BookFilters.cs" />
     <Compile Include="Filters\CommonFilters.cs" />
     <Compile Include="Filters\PersonFilters.cs" />
+    <Compile Include="Interface\IBookInfo.cs" />
     <Compile Include="Interface\IBooksManager.cs" />
     <Compile Include="Interface\IFilter.cs" />
+    <Compile Include="Interface\ILendingInfo.cs" />
     <Compile Include="Interface\ILendingsManager.cs" />
     <Compile Include="Interface\ILibrary.cs" />
+    <Compile Include="Interface\IPersonInfo.cs" />
     <Compile Include="Interface\IPersonsManager.cs" />
     <Compile Include="LendingInfo.cs" />
     <Compile Include="LendingsManager.cs" />
